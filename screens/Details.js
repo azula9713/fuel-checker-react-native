@@ -57,6 +57,8 @@ const Details = () => {
             style={{
               flex: 1,
               minHeight: Dimensions.get("window").height - 100,
+              paddingHorizontal: 10,
+              paddingBottom: 15,
             }}
           >
             <View>

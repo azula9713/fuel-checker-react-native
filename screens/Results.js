@@ -128,6 +128,8 @@ const Results = ({ navigation }) => {
                   flexGrow: 1,
                   alignItems: "center",
                   justifyContent: "center",
+                  width: "100%",
+                  paddingHorizontal: 15,
                 }}
               >
                 {currentStations.map((station) => (
