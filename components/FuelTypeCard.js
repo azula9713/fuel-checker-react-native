@@ -27,7 +27,7 @@ const FuelTypeCard = ({ fuelType, isSelected }) => {
       <Text
         style={[
           {
-            color: isSelected ? "#fff" : "#000",
+            color: isSelected ? "#fff" : "#ec6500",
             fontWeight: isSelected ? "bold" : "normal",
             fontSize: isSelected ? 18 : 16,
           },

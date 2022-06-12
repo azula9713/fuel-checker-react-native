@@ -81,6 +81,7 @@ const Results = ({ navigation }) => {
                 fontSize: 14,
                 fontWeight: "bold",
                 marginTop: 5,
+                color: "#ec6500",
               }}
             >
               Select Fuel Type
@@ -127,7 +128,7 @@ const Results = ({ navigation }) => {
                 contentContainerStyle={{
                   flexGrow: 1,
                   alignItems: "center",
-                  justifyContent: "center",
+                  justifyContent: "flex-start",
                   width: "100%",
                   paddingHorizontal: 15,
                 }}
@@ -212,7 +213,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8EDE3",
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: "#ec6500",
     marginVertical: 10,
   },
 
