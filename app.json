@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "fuel-checker",
-    "slug": "fuel-checker",
+    "name": "Fuel Checker",
+    "slug": "Fuel checker to fetch data from fuel.gov.lk",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

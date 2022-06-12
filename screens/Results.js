@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  Dimensions,
+} from "react-native";
 import React, { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import LottieView from "lottie-react-native";
@@ -90,7 +97,12 @@ const Results = ({ navigation }) => {
             </View>
           </View>
           {stationsLoading ? (
-            <View style={styles.resultsContainer}>
+            <View
+              style={[
+                styles.resultsContainer,
+                { alignItems: "center", justifyContent: "flex-start" },
+              ]}
+            >
               <Text>Loading...</Text>
               <LottieView
                 autoPlay
@@ -110,7 +122,14 @@ const Results = ({ navigation }) => {
                   Available stations as per now: {currentStations?.length}
                 </Text>
               </View>
-              <ScrollView style={styles.resultsContainer}>
+              <ScrollView
+                style={styles.resultsContainer}
+                contentContainerStyle={{
+                  flexGrow: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 {currentStations.map((station) => (
                   <ResultCard
                     key={station.shedId}
@@ -149,7 +168,12 @@ const Results = ({ navigation }) => {
             ))}
           </View>
         </View>
-        <View style={styles.resultsContainer}>
+        <View
+          style={[
+            styles.resultsContainer,
+            { alignItems: "center", justifyContent: "center" },
+          ]}
+        >
           <Text>No fuel stations found...</Text>
           <LottieView
             autoPlay
@@ -158,6 +182,8 @@ const Results = ({ navigation }) => {
             style={{
               width: 350,
               height: 350,
+              flex: 1,
+              alignSelf: "center",
             }}
             source={require("../assets/empty.json")}
           />
@@ -175,6 +201,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 5,
     marginHorizontal: 5,
+    height: "100%",
   },
   fuelTypesContainer: {
     flexDirection: "column",
@@ -196,8 +223,9 @@ const styles = StyleSheet.create({
   },
 
   resultsContainer: {
-    height: "72%",
+    minHeight: Dimensions.get("window").height - 300,
     paddingHorizontal: 10,
     marginVertical: 10,
+    flex: 1,
   },
 });
