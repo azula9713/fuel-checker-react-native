@@ -22,9 +22,9 @@ const LocationPicker = () => {
 
   useEffect(() => {
     if (provinceValue !== null && districtValue !== null) {
-      const tempCities = Districts[provinceValue].districts.find(
+      const tempCities = Districts[provinceValue]?.districts.find(
         (district) => district.districtId === districtValue
-      ).cities;
+      )?.cities;
       setCities(tempCities);
     }
   }, [provinceValue, districtValue]);

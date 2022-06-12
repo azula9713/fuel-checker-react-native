@@ -12,9 +12,21 @@ import Results from "../screens/Results";
 import Details from "../screens/Details";
 import About from "../screens/About";
 import Settings from "../screens/Settings";
+import OverflowMenuHeader from "../components/OverflowMenuHeader";
+import { useRecoilValue } from "recoil";
+import {
+  cityValueAtom,
+  districtValueAtom,
+  provinceValueAtom,
+} from "../atoms/locationAtom";
+import Districts from "../data/DistrictData";
 
 const Routes = () => {
   const Stack = createStackNavigator();
+
+  const currentProvince = useRecoilValue(provinceValueAtom);
+  const currentDistrict = useRecoilValue(districtValueAtom);
+  const currentCity = useRecoilValue(cityValueAtom);
 
   return (
     <NavigationContainer>
@@ -58,12 +70,45 @@ const Routes = () => {
             component={Results}
             options={() => ({
               headerTitleAlign: "center",
-              headerTitle: "Fuel Availability",
+              headerTitle: `Results in ${
+                currentCity === null
+                  ? Districts[currentProvince]?.districts?.find(
+                      (dis) => dis.districtId === currentDistrict
+                    ).name
+                  : Districts[currentProvince]?.districts
+                      ?.find((dis) => dis?.districtId === currentDistrict)
+                      ?.cities?.find((city) => city?.cityId === currentCity)
+                      .name
+              }`,
             })}
           />
-          <Stack.Screen name="Details" component={Details} />
-          <Stack.Screen name="About" component={About} />
-          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen
+            name="Details"
+            component={Details}
+            options={({ navigation }) => ({
+              headerTitleAlign: "center",
+              headerTitle: "Details",
+              headerRight: () => <OverflowMenuHeader navigation={navigation} />,
+            })}
+          />
+          <Stack.Screen
+            name="About"
+            component={About}
+            options={({ navigation }) => ({
+              headerTitleAlign: "center",
+              headerTitle: "About Us",
+              headerRight: () => <OverflowMenuHeader navigation={navigation} />,
+            })}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={({ navigation }) => ({
+              headerTitleAlign: "center",
+              headerTitle: "Settings",
+              headerRight: () => <OverflowMenuHeader navigation={navigation} />,
+            })}
+          />
         </Stack.Navigator>
       </OverflowMenuProvider>
     </NavigationContainer>
