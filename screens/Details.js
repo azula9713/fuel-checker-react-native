@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, StyleSheet, SafeAreaView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useQuery } from "react-query";
-
+import LottieView from "lottie-react-native";
 import { useRecoilValue } from "recoil";
 
 import { selectedStationAtom } from "../atoms/resultsAtom";
@@ -11,6 +11,8 @@ import FuelTypes from "../data/FuelTypes";
 
 const Details = () => {
   const FUEL_OPENING_STOCK = 750;
+  const animation = useRef(null);
+
   const selectedStation = useRecoilValue(selectedStationAtom);
   const selectedFuel = useRecoilValue(selectedFuelTypeAtom);
 
@@ -30,7 +32,18 @@ const Details = () => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        {stationLoading && <Text>Loading...</Text>}
+        {stationLoading && (
+          <LottieView
+            autoPlay
+            loop
+            ref={animation}
+            style={{
+              width: 200,
+              height: 200,
+            }}
+            source={require("../assets/loading-pump.json")}
+          />
+        )}
         {selectedStationData && (
           <ScrollView>
             <View>

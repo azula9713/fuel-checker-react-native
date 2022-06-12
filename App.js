@@ -14,7 +14,10 @@ export default function App() {
   });
 
   //remove yellow box warnings
-  LogBox.ignoreLogs(["EventEmitter.removeListener('change', ...)"]);
+  LogBox.ignoreLogs([
+    "EventEmitter.removeListener('change', ...)",
+    "ViewPropTypes will be removed from React Native",
+  ]);
 
   return (
     <RecoilRoot>

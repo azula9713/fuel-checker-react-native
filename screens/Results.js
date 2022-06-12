@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import LottieView from "lottie-react-native";
+import { useMutation } from "react-query";
+
 import FuelTypeCard from "../components/FuelTypeCard";
 import ResultCard from "../components/ResultCard";
 
@@ -11,7 +14,6 @@ import {
   isFuelChangeTriggerAtom,
 } from "../atoms/resultsAtom";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
-import { useMutation } from "react-query";
 import getFuelAvailability from "../services/GetFuelAvailability";
 import {
   cityValueAtom,
@@ -20,6 +22,8 @@ import {
 } from "../atoms/locationAtom";
 
 const Results = ({ navigation }) => {
+  const animation = useRef(null);
+
   const [currentStations, setCurrentStations] = useRecoilState(
     currentFuelStationAtom
   );
@@ -55,6 +59,11 @@ const Results = ({ navigation }) => {
     }
   }, [selectedFuelType]);
 
+  useEffect(() => {
+    // You can control the ref programmatically, rather than using autoPlay
+    animation.current?.play();
+  }, []);
+
   if (currentStations.length > 0) {
     return (
       <SafeAreaView>
@@ -80,8 +89,21 @@ const Results = ({ navigation }) => {
               ))}
             </View>
           </View>
-          {stationsLoading && <Text>Loading...</Text>}
-          {!stationsLoading && currentStations.length > 0 && (
+          {stationsLoading ? (
+            <View style={styles.resultsContainer}>
+              <Text>Loading...</Text>
+              <LottieView
+                autoPlay
+                loop
+                ref={animation}
+                style={{
+                  width: 200,
+                  height: 200,
+                }}
+                source={require("../assets/loading-pump.json")}
+              />
+            </View>
+          ) : (
             <View>
               <View>
                 <Text>
@@ -106,24 +128,26 @@ const Results = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <View style={styles.fuelTypesContainer}>
-        <Text
-          style={{
-            fontSize: 14,
-            fontWeight: "bold",
-            marginTop: 5,
-          }}
-        >
-          Select Fuel Type
-        </Text>
-        <View style={styles.fuelTypesWrapper}>
-          {FuelTypes.map((fuelType) => (
-            <FuelTypeCard
-              key={fuelType.id}
-              fuelType={fuelType}
-              isSelected={selectedFuelType === fuelType.id}
-            />
-          ))}
+      <View style={styles.container}>
+        <View style={styles.fuelTypesContainer}>
+          <Text
+            style={{
+              fontSize: 14,
+              fontWeight: "bold",
+              marginTop: 5,
+            }}
+          >
+            Select Fuel Type
+          </Text>
+          <View style={styles.fuelTypesWrapper}>
+            {FuelTypes.map((fuelType) => (
+              <FuelTypeCard
+                key={fuelType.id}
+                fuelType={fuelType}
+                isSelected={selectedFuelType === fuelType.id}
+              />
+            ))}
+          </View>
         </View>
       </View>
     </SafeAreaView>
