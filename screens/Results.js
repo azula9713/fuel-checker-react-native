@@ -149,6 +149,19 @@ const Results = ({ navigation }) => {
             ))}
           </View>
         </View>
+        <View style={styles.resultsContainer}>
+          <Text>No fuel stations found...</Text>
+          <LottieView
+            autoPlay
+            loop
+            ref={animation}
+            style={{
+              width: 350,
+              height: 350,
+            }}
+            source={require("../assets/empty.json")}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
