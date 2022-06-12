@@ -1,4 +1,11 @@
-import { View, Text, ScrollView, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+} from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { useQuery } from "react-query";
 import LottieView from "lottie-react-native";
@@ -45,7 +52,13 @@ const Details = () => {
           />
         )}
         {selectedStationData && (
-          <ScrollView>
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            style={{
+              flex: 1,
+              minHeight: Dimensions.get("window").height - 100,
+            }}
+          >
             <View>
               <View style={styles.categoryContainer}>
                 <Text style={styles.categoryTitle}>Basic Info</Text>

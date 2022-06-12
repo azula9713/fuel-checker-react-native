@@ -5,6 +5,7 @@ import {
   Pressable,
   Text,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useMutation } from "react-query";
@@ -42,7 +43,10 @@ const Home = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <ScrollView style={styles.wrapper}>
+      <ScrollView
+        style={styles.wrapper}
+        contentContainerStyle={{ flexGrow: 1 }}
+      >
         <WarningBanner />
         <View style={styles.container}>
           <LocationPicker />
@@ -91,6 +95,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     backgroundColor: "#fff",
+    flex: 1,
+    minHeight: Dimensions.get("window").height,
   },
 
   buttonContainer: {
