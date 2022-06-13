@@ -33,7 +33,7 @@ const Home = ({ navigation }) => {
   const fuelTypeValue = useRecoilValue(selectedFuelTypeAtom);
   const setCurrentStations = useSetRecoilState(currentFuelStationAtom);
 
-  const [currNetworkStatus, setCurrNetworkStatus] = useState();
+  const [currNetworkStatus, setCurrNetworkStatus] = useState(null);
 
   const { mutate: findStations, isLoading: stationsLoading } = useMutation(
     FuelAPI.searchFuelStations,
@@ -57,8 +57,9 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     if (
-      !currNetworkStatus.isConnected ||
-      !currNetworkStatus.isInternetReachable
+      currNetworkStatus !== null &&
+      (!currNetworkStatus?.isConnected ||
+        !currNetworkStatus?.isInternetReachable)
     ) {
       Alert.alert(
         "No Internet Connection",
@@ -79,8 +80,8 @@ const Home = ({ navigation }) => {
           <LocationPicker />
           <Pressable
             disabled={
-              !currNetworkStatus.isConnected ||
-              !currNetworkStatus.isInternetReachable
+              !currNetworkStatus?.isConnected ||
+              !currNetworkStatus?.isInternetReachable
             }
             onPress={() => {
               getFuelAvailability(
