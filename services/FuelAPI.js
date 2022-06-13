@@ -1,10 +1,11 @@
+import { Alert } from "react-native";
 import SERVER from "./Server";
 
 export const searchFuelStations = async (searchObj) => {
   try {
     return await SERVER.post("/sheddetails/search", searchObj);
   } catch (error) {
-    console.log(error);
+    Alert.alert("Error", error.message);
   }
 };
 

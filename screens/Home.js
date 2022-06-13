@@ -6,10 +6,7 @@ import {
   Text,
   ScrollView,
   Dimensions,
-  Alert,
 } from "react-native";
-import { useEffect, useState } from "react";
-import NetInfo from "@react-native-community/netinfo";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useMutation } from "react-query";
 import { StatusBar } from "expo-status-bar";
@@ -21,6 +18,7 @@ import {
 } from "../atoms/locationAtom";
 import { currentFuelStationAtom } from "../atoms/resultsAtom";
 import * as FuelAPI from "../services/FuelAPI";
+import HomeLocaleEn from "../lang/en/Home.json";
 
 import LocationPicker from "../components/LocationPicker";
 import WarningBanner from "../components/WarningBanner";
@@ -34,7 +32,7 @@ const Home = ({ navigation }) => {
   const fuelTypeValue = useRecoilValue(selectedFuelTypeAtom);
   const setCurrentStations = useSetRecoilState(currentFuelStationAtom);
 
-  const [currNetworkStatus, setCurrNetworkStatus] = useState(null);
+  const btnDisabled = !(provinceValue && districtValue);
 
   const { mutate: findStations, isLoading: stationsLoading } = useMutation(
     FuelAPI.searchFuelStations,
@@ -46,30 +44,6 @@ const Home = ({ navigation }) => {
     }
   );
 
-  const checkNetworkStatus = async () => {
-    await NetInfo.fetch().then((status) => {
-      setCurrNetworkStatus(status);
-    });
-  };
-
-  useEffect(() => {
-    checkNetworkStatus();
-  }, []);
-
-  useEffect(() => {
-    if (
-      currNetworkStatus !== null &&
-      (!currNetworkStatus?.isConnected ||
-        !currNetworkStatus?.isInternetReachable)
-    ) {
-      Alert.alert(
-        "No Internet Connection",
-        "Please check your internet connection and try again.",
-        [{ text: "Refresh", onPress: () => checkNetworkStatus() }]
-      );
-    }
-  }, [currNetworkStatus]);
-
   return (
     <SafeAreaView>
       <StatusBar style="dark" />
@@ -80,11 +54,9 @@ const Home = ({ navigation }) => {
         <WarningBanner />
         <View style={styles.container}>
           <LocationPicker />
+
           <Pressable
-            disabled={
-              !currNetworkStatus?.isConnected ||
-              !currNetworkStatus?.isInternetReachable
-            }
+            disabled={btnDisabled}
             onPress={() => {
               getFuelAvailability(
                 provinceValue,
@@ -94,10 +66,17 @@ const Home = ({ navigation }) => {
                 findStations
               );
             }}
-            style={styles.buttonContainer}
+            style={[
+              styles.buttonContainer,
+              {
+                backgroundColor: btnDisabled ? "#ccc" : "#ec6500",
+              },
+            ]}
           >
             <Text style={styles.buttonText}>
-              {stationsLoading ? "Loading..." : "Check Fuel Availability"}
+              {stationsLoading
+                ? HomeLocaleEn.cta.loadignText
+                : HomeLocaleEn.cta.actionText}
             </Text>
           </Pressable>
         </View>
@@ -135,7 +114,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    backgroundColor: "#ec6500",
+    //if disabled, the button will be gray
     borderRadius: 10,
     padding: 10,
   },

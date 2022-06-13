@@ -2,7 +2,7 @@
   "expo": {
     "name": "Fuel Finder",
     "slug": "fuel-finder",
-    "version": "0.9.4",
+    "version": "0.9.5",
     "orientation": "portrait",
     "icon": "./assets/fuel.png",
     "userInterfaceStyle": "light",

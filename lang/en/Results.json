@@ -1,0 +1,10 @@
+{
+  "fuelType": {
+    "pickerTitle": "Select Fuel Type"
+  },
+  "results": {
+    "loading": "Loading...",
+    "availability": "Available stations as per now:",
+    "notAvailable": "No fuel stations found..."
+  }
+}

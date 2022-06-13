@@ -70,7 +70,7 @@ const About = () => {
                   }}
                 >
                   <MaterialCommunityIcons name="web" size={20} color="white" />
-                  <Text style={styles.linkText}>Portfolio</Text>
+                  <Text style={styles.linkText}>Web</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[styles.linkButton, { backgroundColor: "#00acee" }]}
@@ -84,32 +84,6 @@ const About = () => {
                     color="white"
                   />
                   <Text style={styles.linkText}>Twitter</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.linkButton, { backgroundColor: "#0072b1" }]}
-                  onPress={async () => {
-                    await handleUrl(MyInfo.linkedin);
-                  }}
-                >
-                  <MaterialCommunityIcons
-                    name="linkedin"
-                    size={20}
-                    color="white"
-                  />
-                  <Text style={styles.linkText}>LinkedIn</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.linkButton, { backgroundColor: "#4267B2" }]}
-                  onPress={async () => {
-                    await handleUrl(MyInfo.linkedin);
-                  }}
-                >
-                  <MaterialCommunityIcons
-                    name="facebook"
-                    size={20}
-                    color="white"
-                  />
-                  <Text style={styles.linkText}>Facebook</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[styles.linkButton, { backgroundColor: "#171515" }]}

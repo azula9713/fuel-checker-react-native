@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import LottieView from "lottie-react-native";
 import { useMutation } from "react-query";
@@ -15,6 +15,7 @@ import FuelTypeCard from "../components/FuelTypeCard";
 import ResultCard from "../components/ResultCard";
 import { StatusBar } from "expo-status-bar";
 
+import ResultsLocaleEn from "../lang/en/Results.json";
 import FuelTypes from "../data/FuelTypes";
 import * as FuelAPI from "../services/FuelAPI";
 import {
@@ -30,8 +31,6 @@ import {
 } from "../atoms/locationAtom";
 
 const Results = ({ navigation }) => {
-  const animation = useRef(null);
-
   const [currentStations, setCurrentStations] = useRecoilState(
     currentFuelStationAtom
   );
@@ -67,11 +66,6 @@ const Results = ({ navigation }) => {
     }
   }, [selectedFuelType]);
 
-  useEffect(() => {
-    // You can control the ref programmatically, rather than using autoPlay
-    animation.current?.play();
-  }, []);
-
   if (currentStations && currentStations.length > 0) {
     return (
       <SafeAreaView>
@@ -86,7 +80,7 @@ const Results = ({ navigation }) => {
                 color: "#ec6500",
               }}
             >
-              Select Fuel Type
+              {ResultsLocaleEn.fuelType.pickerTitle}
             </Text>
             <View style={styles.fuelTypesWrapper}>
               {FuelTypes.map((fuelType) => (
@@ -106,11 +100,10 @@ const Results = ({ navigation }) => {
                 { alignItems: "center", justifyContent: "flex-start" },
               ]}
             >
-              <Text>Loading...</Text>
+              <Text>{ResultsLocaleEn.results.loading}</Text>
               <LottieView
                 autoPlay
                 loop
-                ref={animation}
                 style={{
                   width: 200,
                   height: 200,
@@ -122,7 +115,8 @@ const Results = ({ navigation }) => {
             <View>
               <View>
                 <Text>
-                  Available stations as per now: {currentStations?.length}
+                  {ResultsLocaleEn.results.availability}{" "}
+                  {currentStations?.length}
                 </Text>
               </View>
               <ScrollView
@@ -179,7 +173,7 @@ const Results = ({ navigation }) => {
             { alignItems: "center", justifyContent: "center" },
           ]}
         >
-          <Text>No fuel stations found...</Text>
+          <Text>{ResultsLocaleEn.results.notAvailable}</Text>
           <LottieView
             autoPlay
             loop
@@ -202,8 +196,7 @@ export default Results;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    padding: 10,
     marginVertical: 5,
     marginHorizontal: 5,
     height: "100%",
@@ -229,7 +222,7 @@ const styles = StyleSheet.create({
 
   resultsContainer: {
     minHeight: Dimensions.get("window").height - 300,
-    paddingHorizontal: 10,
+    paddingHorizontal: Dimensions.get("window").width < 400 ? 5 : 10,
     marginVertical: 10,
     flex: 1,
   },

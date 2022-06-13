@@ -6,12 +6,13 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import LottieView from "lottie-react-native";
 import { useRecoilValue } from "recoil";
 import { StatusBar } from "expo-status-bar";
 
+import DetailsLocaleEn from "../lang/en/Details.json";
 import { selectedStationAtom } from "../atoms/resultsAtom";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
 import * as FuelAPI from "../services/FuelAPI";
@@ -19,7 +20,6 @@ import FuelTypes from "../data/FuelTypes";
 
 const Details = () => {
   const FUEL_OPENING_STOCK = 750;
-  const animation = useRef(null);
 
   const selectedStation = useRecoilValue(selectedStationAtom);
   const selectedFuel = useRecoilValue(selectedFuelTypeAtom);
@@ -45,7 +45,6 @@ const Details = () => {
           <LottieView
             autoPlay
             loop
-            ref={animation}
             style={{
               width: 200,
               height: 200,
@@ -65,10 +64,12 @@ const Details = () => {
           >
             <View>
               <View style={styles.categoryContainer}>
-                <Text style={styles.categoryTitle}>Basic Info</Text>
+                <Text style={styles.categoryTitle}>
+                  {DetailsLocaleEn.basicInfo.title}
+                </Text>
                 <View style={styles.metaDataContainer}>
                   <Text style={styles.metaDataTitle}>
-                    Filling Station Code:{" "}
+                    {DetailsLocaleEn.basicInfo.stationCode}:{" "}
                   </Text>
                   <Text style={styles.metaDataValue}>
                     {selectedStationData.shedCode}
@@ -76,29 +77,35 @@ const Details = () => {
                 </View>
                 <View style={styles.metaDataContainer}>
                   <Text style={styles.metaDataTitle}>
-                    Filling Station Name:{" "}
+                    {DetailsLocaleEn.basicInfo.stationName}:{" "}
                   </Text>
                   <Text style={styles.metaDataValue}>
                     {selectedStationData.shedName}
                   </Text>
                 </View>
                 <View style={styles.metaDataContainer}>
-                  <Text style={styles.metaDataTitle}>Address: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.basicInfo.address}:{" "}
+                  </Text>
                   <Text style={styles.metaDataValue}>
                     {selectedStationData.address}
                   </Text>
                 </View>
               </View>
               <View style={styles.categoryContainer}>
-                <Text style={styles.categoryTitle}>Available Fuel Types</Text>
+                <Text style={styles.categoryTitle}>
+                  {DetailsLocaleEn.availableTypes.title}
+                </Text>
                 <Text
                   style={styles.updateText}
-                >{`Last updated at ${selectedStationData.lastupdateddate}`}</Text>
+                >{`${DetailsLocaleEn.availableTypes.lastUpdated} ${selectedStationData.lastupdateddate}`}</Text>
                 <View style={styles.metaDataContainer}>
                   <View>
                     <Text>Petrol 92 </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -121,7 +128,9 @@ const Details = () => {
                   <View>
                     <Text>Petrol 95 </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -144,7 +153,9 @@ const Details = () => {
                   <View>
                     <Text>Diesel </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -167,7 +178,9 @@ const Details = () => {
                   <View>
                     <Text>Super Diesel </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -190,7 +203,9 @@ const Details = () => {
                   <View>
                     <Text>Kerosine </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -211,21 +226,27 @@ const Details = () => {
                 </View>
               </View>
               <View style={styles.categoryContainer}>
-                <Text style={styles.categoryTitle}>Fuel Dispatches</Text>
+                <Text style={styles.categoryTitle}>
+                  {DetailsLocaleEn.fuelDispatches.title}
+                </Text>
                 <Text
                   style={styles.updateText}
-                >{`Last updated at ${selectedStationData.lastupdateddate}`}</Text>
+                >{` ${DetailsLocaleEn.availableTypes.lastUpdated} at ${selectedStationData.lastupdateddate}`}</Text>
                 {selectedStationData.dispatchSheduleList.map(
                   (dispatch, index) => (
                     <View style={styles.dispatchContainer} key={index}>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>Plant Name: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.plantName}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>
                           {dispatch.plantName}
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>Product Type: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.productType}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>
                           {
                             FuelTypes.find(
@@ -235,21 +256,25 @@ const Details = () => {
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>Amount: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.productType}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>
                           {`${dispatch.amountDispatch} Litres`}
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
                         <Text style={styles.dispatchTitle}>
-                          Plant Exit Time:{" "}
+                          {DetailsLocaleEn.fuelDispatches.plantExitTime}:{" "}
                         </Text>
                         <Text style={styles.dispatchValue}>
                           {dispatch.dispatchTime}
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>E.T.A: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.eta}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>{dispatch.eta}</Text>
                       </View>
                     </View>
@@ -296,7 +321,7 @@ const styles = StyleSheet.create({
     color: "#ec6500",
   },
   categoryTitle: {
-    fontSize: 20,
+    fontSize: Dimensions.get("window").width < 400 ? 16 : 20,
     textAlign: "center",
     color: "#ec6500",
     fontWeight: "bold",
@@ -311,12 +336,12 @@ const styles = StyleSheet.create({
   },
   metaDataTitle: {
     color: "#000",
-    fontSize: 15,
+    fontSize: Dimensions.get("window").width < 400 ? 13 : 15,
   },
   metaDataValue: {
     color: "black",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: Dimensions.get("window").width < 400 ? 13 : 15,
   },
   dispatchContainer: {
     width: "100%",

@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 import React from "react";
 import { useSetRecoilState } from "recoil";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
@@ -29,7 +29,13 @@ const FuelTypeCard = ({ fuelType, isSelected }) => {
           {
             color: isSelected ? "#fff" : "#ec6500",
             fontWeight: isSelected ? "bold" : "normal",
-            fontSize: isSelected ? 18 : 16,
+            fontSize: isSelected
+              ? Dimensions.get("window").width < 400
+                ? 14
+                : 18
+              : Dimensions.get("window").width < 400
+              ? 12
+              : 16,
           },
           styles.textStyle,
         ]}

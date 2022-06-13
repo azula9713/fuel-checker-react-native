@@ -1,28 +1,24 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
+import HomeLocaleEn from "../lang/en/Home.json";
+
 const WarningBanner = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.warningTitle}>Heads Up!</Text>
-      {/* display a list */}
+      <Text style={styles.warningTitle}>{HomeLocaleEn.banner.bannerTitle}</Text>
       <View style={styles.warningWrapper}>
         <Text style={styles.warningText}>
-          1. I am not responsible for any details displayed on the system.
+          {HomeLocaleEn.banner.bannerText1}
         </Text>
         <Text style={styles.warningText}>
-          2. Information on the fuel availability will be uploaded to the system
-          by Ceylon Petroleum Storage Terminals Ltd (CPSTL) by 9.00 a.m daily.
-          Further, the time is shown in 24-hour clock format.
+          {HomeLocaleEn.banner.bannerText2}
         </Text>
         <Text style={styles.warningText}>
-          3. The search results are given only for filling stations with pumping
-          capacity or where a fuel bowser is dispatched.
+          {HomeLocaleEn.banner.bannerText3}
         </Text>
         <Text style={styles.warningText}>
-          4. This app is not the official app of Ceylon Petroleum Storage
-          Terminals Ltd. This is built using their public API and has no
-          affiliation with Ceylon Petroleum Storage Terminals Ltd.
+          {HomeLocaleEn.banner.bannerText4}
         </Text>
       </View>
     </View>

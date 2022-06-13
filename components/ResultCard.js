@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Dimensions,
+} from "react-native";
 import React from "react";
 import { selectedStationAtom } from "../atoms/resultsAtom";
 import { useSetRecoilState } from "recoil";
@@ -67,7 +74,6 @@ const ResultCard = ({ navigation, fuelStation }) => {
               </View>
               <View style={styles.metaContainer}>
                 <Text style={styles.metaTitle}>Estimated arriving stock:</Text>
-
                 <Text style={styles.metaValue}>
                   {fuelStation?.eta?.split(", ")[1]}
                 </Text>
@@ -84,7 +90,8 @@ export default ResultCard;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    margin: 10,
+    marginVertical: 10,
+    marginHorizontal: Dimensions.get("window").width < 400 ? 5 : 10,
     borderRadius: 10,
     backgroundColor: "#fff",
     shadowColor: "#000",
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
   },
   metaContainer: {
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   metaTitle: {
     textAlign: "left",

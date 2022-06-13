@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 
 import Provinces from "../data/ProvinceData";
 import Districts from "../data/DistrictData";
+import HomeLocaleEn from "../lang/en/Home.json";
 import {
   cityValueAtom,
   districtValueAtom,
@@ -31,9 +32,16 @@ const LocationPicker = () => {
 
   return (
     <View>
-      <Text>FILLING STATION LOCATION</Text>
+      <Text
+        style={{
+          textTransform: "uppercase",
+          textAlign: "center",
+        }}
+      >
+        {HomeLocaleEn.locationPicker.title}
+      </Text>
       <View style={styles.dropDownWrapper}>
-        <Text>Your Province *</Text>
+        <Text>{HomeLocaleEn.locationPicker.provincePicker}</Text>
         <Dropdown
           style={[styles.dropdown, provinceFocus && { borderColor: "blue" }]}
           placeholderStyle={styles.placeholderStyle}
@@ -44,7 +52,7 @@ const LocationPicker = () => {
           maxHeight={300}
           labelField="name"
           valueField="provinceId"
-          placeholder={"Select your province"}
+          placeholder={HomeLocaleEn.locationPicker.provincePlaceholder}
           searchPlaceholder="Search..."
           value={provinceValue}
           onFocus={() => {
@@ -60,7 +68,7 @@ const LocationPicker = () => {
       </View>
       {provinceValue !== null && (
         <View style={styles.dropDownWrapper}>
-          <Text>Your District *</Text>
+          <Text>{HomeLocaleEn.locationPicker.districtPicker}</Text>
           <Dropdown
             style={[styles.dropdown, districtFocus && { borderColor: "blue" }]}
             placeholderStyle={styles.placeholderStyle}
@@ -71,7 +79,7 @@ const LocationPicker = () => {
             maxHeight={300}
             labelField="name"
             valueField="districtId"
-            placeholder={"Select your district"}
+            placeholder={HomeLocaleEn.locationPicker.districtPlaceholder}
             searchPlaceholder="Search..."
             value={districtValue}
             onFocus={() => {
@@ -88,7 +96,7 @@ const LocationPicker = () => {
       )}
       {districtValue !== null && (
         <View style={styles.dropDownWrapper}>
-          <Text>Your City</Text>
+          <Text>{HomeLocaleEn.locationPicker.cityPicker}</Text>
           <Dropdown
             style={[styles.dropdown, cityFocus && { borderColor: "blue" }]}
             placeholderStyle={styles.placeholderStyle}
@@ -99,7 +107,7 @@ const LocationPicker = () => {
             maxHeight={300}
             labelField="name"
             valueField="cityId"
-            placeholder={"Select your city"}
+            placeholder={HomeLocaleEn.locationPicker.cityPlaceholder}
             searchPlaceholder="Search..."
             value={cityValue}
             onFocus={() => {

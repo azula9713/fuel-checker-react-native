@@ -1,0 +1,30 @@
+{
+  "banner": {
+    "bannerTitle": "Heads up!",
+    "bannerText1": "1. I am not responsible for any details displayed on the system.",
+    "bannerText2": "2. Information on the fuel availability will be uploaded to the system by Ceylon Petroleum Storage Terminals Ltd (CPSTL) by 9.00 a.m daily. Further, the time is shown in 24-hour clock format.",
+    "bannerText3": " 3. The search results are given only for filling stations with pumping capacity or where a fuel bowser is dispatched.",
+    "bannerText4": "4. This app is not the official app of Ceylon Petroleum Storage Terminals Ltd. This is built using their public API and has no affiliation with Ceylon Petroleum Storage Terminals Ltd."
+  },
+  "locationPicker": {
+    "title": "Filling Station Location",
+    "provincePicker": "Your Province *",
+    "provincePlaceholder": "Select your province",
+    "districtPicker": "Your District *",
+    "districtPlaceholder": "Select your district",
+    "cityPicker": "Your City",
+    "cityPlaceholder": "Select your city"
+  },
+
+  "cta": {
+    "loadignText": "Loading...",
+    "actionText": "Check Fuel Availability"
+  },
+  "errorAlerts": {
+    "noconnection": {
+      "title": "No Connection",
+      "message": "Please check your internet connection and try again.",
+      "ctaText": "Refresh"
+    }
+  }
+}
