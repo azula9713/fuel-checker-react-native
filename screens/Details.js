@@ -42,15 +42,24 @@ const Details = () => {
       <StatusBar style="dark" />
       <View style={styles.container}>
         {stationLoading && (
-          <LottieView
-            autoPlay
-            loop
+          <View
             style={{
-              width: 200,
-              height: 200,
+              flexDirection: "column",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            source={require("../assets/loading-pump.json")}
-          />
+          >
+            <LottieView
+              autoPlay
+              loop
+              style={{
+                width: 200,
+                height: 200,
+              }}
+              source={require("../assets/loading-pump.json")}
+            />
+          </View>
         )}
         {selectedStationData && (
           <ScrollView
