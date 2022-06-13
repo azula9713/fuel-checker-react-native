@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     backgroundColor: "#fff",
     flex: 1,
-    minHeight: Dimensions.get("window").height,
+    minHeight: Dimensions.get("window").height - 80,
+    height: "100%",
   },
 
   buttonContainer: {
@@ -140,7 +141,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
+    //if device screen is smaller than 500px, then font size is smaller
+    fontSize: Dimensions.get("window").width < 400 ? 12 : 18,
     textTransform: "uppercase",
     textAlign: "center",
     fontWeight: "bold",

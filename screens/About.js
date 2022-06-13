@@ -10,6 +10,7 @@ import {
   Image,
   TouchableOpacity,
   Linking,
+  ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Constants from "expo-constants";
@@ -31,108 +32,114 @@ const About = () => {
   return (
     <SafeAreaView>
       <ExpoStatus style="dark" />
-      <View style={styles.container}>
-        <Image
-          source={require("../assets/fuel.png")}
-          style={{
-            resizeMode: "contain",
-            height: 140,
-            width: 140,
-          }}
-        />
-        <View>
-          <Text style={styles.appTitle}>Fuel Finder</Text>
-          <Text style={styles.versionText}>v{version}</Text>
-        </View>
-        <View style={styles.detailsWrapper}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.container}>
+          <Image
+            source={require("../assets/fuel.png")}
+            style={{
+              resizeMode: "contain",
+              height: 140,
+              width: 140,
+            }}
+          />
           <View>
-            <Text style={styles.warningText}>
-              This app is not the official app of Ceylon Petroleum Storage
-              Terminals Ltd. This is built using their public API and has no
-              affiliation with Ceylon Petroleum Storage Terminals Ltd. I am not
-              responsible for any data displayed here. I am fetching data from
-              same source as their official website.
-            </Text>
-            <Text style={styles.websiteText}>
-              Visit their website at {website}
-            </Text>
+            <Text style={styles.appTitle}>Fuel Finder</Text>
+            <Text style={styles.versionText}>v{version}</Text>
           </View>
-          <View style={styles.aboutMeContainer}>
-            <Text style={styles.createdByText}>Created by AzuLa9713</Text>
-            <Text style={styles.websiteText}>Find me on</Text>
-            <View style={styles.linksContainer}>
-              <TouchableOpacity
-                style={[styles.linkButton, { backgroundColor: "#0B192E" }]}
-                onPress={async () => {
-                  await handleUrl(MyInfo.portfolio);
-                }}
-              >
-                <MaterialCommunityIcons name="web" size={20} color="white" />
-                <Text style={styles.linkText}>Portfolio</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.linkButton, { backgroundColor: "#00acee" }]}
-                onPress={async () => {
-                  await handleUrl(MyInfo.twitter);
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="twitter"
-                  size={20}
-                  color="white"
-                />
-                <Text style={styles.linkText}>Twitter</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.linkButton, { backgroundColor: "#0072b1" }]}
-                onPress={async () => {
-                  await handleUrl(MyInfo.linkedin);
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="linkedin"
-                  size={20}
-                  color="white"
-                />
-                <Text style={styles.linkText}>LinkedIn</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.linkButton, { backgroundColor: "#4267B2" }]}
-                onPress={async () => {
-                  await handleUrl(MyInfo.linkedin);
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="facebook"
-                  size={20}
-                  color="white"
-                />
-                <Text style={styles.linkText}>Facebook</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.linkButton, { backgroundColor: "#171515" }]}
-                onPress={async () => {
-                  await handleUrl(MyInfo.github);
-                }}
-              >
-                <MaterialCommunityIcons name="github" size={20} color="white" />
-                <Text style={styles.linkText}>Github</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.linkButton, { backgroundColor: "#EA4335" }]}
-                onPress={() => {
-                  Linking.openURL(
-                    `mailto:${MyInfo.email}?subject=Fuel Finder&body=Hi,%0A%0A`
-                  );
-                }}
-              >
-                <MaterialCommunityIcons name="mail" size={20} color="white" />
-                <Text style={styles.linkText}>Email</Text>
-              </TouchableOpacity>
+          <View style={styles.detailsWrapper}>
+            <View>
+              <Text style={styles.warningText}>
+                This app is not the official app of Ceylon Petroleum Storage
+                Terminals Ltd. This is built using their public API and has no
+                affiliation with Ceylon Petroleum Storage Terminals Ltd. I am
+                not responsible for any data displayed here. I am fetching data
+                from same source as their official website.
+              </Text>
+              <Text style={styles.websiteText}>
+                Visit their website at {website}
+              </Text>
+            </View>
+            <View style={styles.aboutMeContainer}>
+              <Text style={styles.createdByText}>Created by AzuLa9713</Text>
+              <Text style={styles.websiteText}>Find me on</Text>
+              <View style={styles.linksContainer}>
+                <TouchableOpacity
+                  style={[styles.linkButton, { backgroundColor: "#0B192E" }]}
+                  onPress={async () => {
+                    await handleUrl(MyInfo.portfolio);
+                  }}
+                >
+                  <MaterialCommunityIcons name="web" size={20} color="white" />
+                  <Text style={styles.linkText}>Portfolio</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.linkButton, { backgroundColor: "#00acee" }]}
+                  onPress={async () => {
+                    await handleUrl(MyInfo.twitter);
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="twitter"
+                    size={20}
+                    color="white"
+                  />
+                  <Text style={styles.linkText}>Twitter</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.linkButton, { backgroundColor: "#0072b1" }]}
+                  onPress={async () => {
+                    await handleUrl(MyInfo.linkedin);
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="linkedin"
+                    size={20}
+                    color="white"
+                  />
+                  <Text style={styles.linkText}>LinkedIn</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.linkButton, { backgroundColor: "#4267B2" }]}
+                  onPress={async () => {
+                    await handleUrl(MyInfo.linkedin);
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="facebook"
+                    size={20}
+                    color="white"
+                  />
+                  <Text style={styles.linkText}>Facebook</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.linkButton, { backgroundColor: "#171515" }]}
+                  onPress={async () => {
+                    await handleUrl(MyInfo.github);
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="github"
+                    size={20}
+                    color="white"
+                  />
+                  <Text style={styles.linkText}>Github</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.linkButton, { backgroundColor: "#EA4335" }]}
+                  onPress={() => {
+                    Linking.openURL(
+                      `mailto:${MyInfo.email}?subject=Fuel Finder&body=Hi,%0A%0A`
+                    );
+                  }}
+                >
+                  <MaterialCommunityIcons name="mail" size={20} color="white" />
+                  <Text style={styles.linkText}>Email</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

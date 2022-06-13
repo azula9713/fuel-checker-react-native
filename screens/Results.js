@@ -72,7 +72,7 @@ const Results = ({ navigation }) => {
     animation.current?.play();
   }, []);
 
-  if (currentStations.length > 0) {
+  if (currentStations && currentStations.length > 0) {
     return (
       <SafeAreaView>
         <StatusBar style="dark" />
