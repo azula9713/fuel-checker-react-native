@@ -177,7 +177,6 @@ const Results = ({ navigation }) => {
           <LottieView
             autoPlay
             loop
-            ref={animation}
             style={{
               width: 350,
               height: 350,

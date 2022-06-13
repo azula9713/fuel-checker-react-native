@@ -294,7 +294,10 @@ export default Details;
 const styles = StyleSheet.create({
   container: {
     margin: 10,
-    padding: 10,
+    paddingVertical: 10,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
   categoryContainer: {
     marginBottom: 10,
