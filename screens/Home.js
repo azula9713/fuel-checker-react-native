@@ -7,6 +7,7 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useMutation } from "react-query";
 
@@ -22,6 +23,7 @@ import LocationPicker from "../components/LocationPicker";
 import WarningBanner from "../components/WarningBanner";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
 import getFuelAvailability from "../services/GetFuelAvailability";
+import { useEffect } from "react";
 
 const Home = ({ navigation }) => {
   const provinceValue = useRecoilValue(provinceValueAtom);
@@ -40,6 +42,20 @@ const Home = ({ navigation }) => {
       },
     }
   );
+
+  useEffect(() => {
+    // check if app is connected to internet
+    NetInfo.fetch()
+      .then((state) => {
+        if (state.isConnected) {
+          // if connected, check if location is set
+          navigation.navigate("NotConnected");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
 
   return (
     <SafeAreaView>
