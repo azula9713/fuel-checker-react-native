@@ -6,7 +6,9 @@ import {
   Text,
   ScrollView,
   Dimensions,
+  Alert,
 } from "react-native";
+import { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useMutation } from "react-query";
@@ -23,7 +25,6 @@ import LocationPicker from "../components/LocationPicker";
 import WarningBanner from "../components/WarningBanner";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
 import getFuelAvailability from "../services/GetFuelAvailability";
-import { useEffect } from "react";
 
 const Home = ({ navigation }) => {
   const provinceValue = useRecoilValue(provinceValueAtom);
@@ -32,30 +33,40 @@ const Home = ({ navigation }) => {
   const fuelTypeValue = useRecoilValue(selectedFuelTypeAtom);
   const setCurrentStations = useSetRecoilState(currentFuelStationAtom);
 
+  const [currNetworkStatus, setCurrNetworkStatus] = useState();
+
   const { mutate: findStations, isLoading: stationsLoading } = useMutation(
     FuelAPI.searchFuelStations,
     {
       onSuccess: (data) => {
         setCurrentStations(data?.data);
-
         navigation.navigate("Results");
       },
     }
   );
 
+  const checkNetworkStatus = async () => {
+    await NetInfo.fetch().then((status) => {
+      setCurrNetworkStatus(status);
+    });
+  };
+
   useEffect(() => {
-    // check if app is connected to internet
-    NetInfo.fetch()
-      .then((state) => {
-        if (state.isConnected) {
-          // if connected, check if location is set
-          navigation.navigate("NotConnected");
-        }
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    checkNetworkStatus();
   }, []);
+
+  useEffect(() => {
+    if (
+      !currNetworkStatus.isConnected ||
+      !currNetworkStatus.isInternetReachable
+    ) {
+      Alert.alert(
+        "No Internet Connection",
+        "Please check your internet connection and try again.",
+        [{ text: "Refresh", onPress: () => checkNetworkStatus() }]
+      );
+    }
+  }, [currNetworkStatus]);
 
   return (
     <SafeAreaView>
@@ -67,6 +78,10 @@ const Home = ({ navigation }) => {
         <View style={styles.container}>
           <LocationPicker />
           <Pressable
+            disabled={
+              !currNetworkStatus.isConnected ||
+              !currNetworkStatus.isInternetReachable
+            }
             onPress={() => {
               getFuelAvailability(
                 provinceValue,
