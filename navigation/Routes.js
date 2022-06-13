@@ -20,7 +20,6 @@ import {
   provinceValueAtom,
 } from "../atoms/locationAtom";
 import Districts from "../data/DistrictData";
-import NotConnected from "../screens/NotConnected";
 
 const Routes = () => {
   const Stack = createStackNavigator();
@@ -111,7 +110,6 @@ const Routes = () => {
               headerRight: () => <OverflowMenuHeader navigation={navigation} />,
             })}
           />
-          <Stack.Screen name="NotConnected" component={NotConnected} />
         </Stack.Navigator>
       </OverflowMenuProvider>
     </NavigationContainer>

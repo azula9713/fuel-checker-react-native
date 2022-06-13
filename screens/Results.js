@@ -13,6 +13,7 @@ import { useMutation } from "react-query";
 
 import FuelTypeCard from "../components/FuelTypeCard";
 import ResultCard from "../components/ResultCard";
+import { StatusBar } from "expo-status-bar";
 
 import FuelTypes from "../data/FuelTypes";
 import * as FuelAPI from "../services/FuelAPI";
@@ -74,6 +75,7 @@ const Results = ({ navigation }) => {
   if (currentStations.length > 0) {
     return (
       <SafeAreaView>
+        <StatusBar style="dark" />
         <View style={styles.container}>
           <View style={styles.fuelTypesContainer}>
             <Text

@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useMutation } from "react-query";
+import { StatusBar } from "expo-status-bar";
 
 import {
   cityValueAtom,
@@ -71,6 +72,7 @@ const Home = ({ navigation }) => {
 
   return (
     <SafeAreaView>
+      <StatusBar style="dark" />
       <ScrollView
         style={styles.wrapper}
         contentContainerStyle={{ flexGrow: 1 }}

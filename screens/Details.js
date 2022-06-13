@@ -10,6 +10,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useQuery } from "react-query";
 import LottieView from "lottie-react-native";
 import { useRecoilValue } from "recoil";
+import { StatusBar } from "expo-status-bar";
 
 import { selectedStationAtom } from "../atoms/resultsAtom";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
@@ -38,6 +39,7 @@ const Details = () => {
 
   return (
     <SafeAreaView>
+      <StatusBar style="dark" />
       <View style={styles.container}>
         {stationLoading && (
           <LottieView

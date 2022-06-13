@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Constants from "expo-constants";
+import { StatusBar as ExpoStatus } from "expo-status-bar";
 
 import MyInfo from "../data/MyInfo";
 
@@ -29,6 +30,7 @@ const About = () => {
 
   return (
     <SafeAreaView>
+      <ExpoStatus style="dark" />
       <View style={styles.container}>
         <Image
           source={require("../assets/fuel.png")}
