@@ -53,7 +53,7 @@ const Routes = () => {
                     style={{
                       marginHorizontal: 10,
                     }}
-                    title="About Us"
+                    title="About"
                     onPress={() => navigation.navigate("About")}
                   />
                   <HiddenItem
@@ -68,7 +68,7 @@ const Routes = () => {
           <Stack.Screen
             name="Results"
             component={Results}
-            options={() => ({
+            options={({ navigation }) => ({
               headerTitleAlign: "center",
               headerTitle: `Results in ${
                 currentCity === null
@@ -80,6 +80,7 @@ const Routes = () => {
                       ?.cities?.find((city) => city?.cityId === currentCity)
                       .name
               }`,
+              headerRight: () => <OverflowMenuHeader navigation={navigation} />,
             })}
           />
           <Stack.Screen
@@ -96,7 +97,7 @@ const Routes = () => {
             component={About}
             options={({ navigation }) => ({
               headerTitleAlign: "center",
-              headerTitle: "About Us",
+              headerTitle: "About",
               headerRight: () => <OverflowMenuHeader navigation={navigation} />,
             })}
           />

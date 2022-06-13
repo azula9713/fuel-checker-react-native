@@ -14,7 +14,7 @@ const OverflowMenuHeader = ({ navigation }) => {
         style={{
           marginHorizontal: 10,
         }}
-        title="About Us"
+        title="About"
         onPress={() => navigation.navigate("About")}
       />
       <HiddenItem
