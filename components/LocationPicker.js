@@ -57,6 +57,8 @@ const LocationPicker = () => {
           value={provinceValue}
           onFocus={() => {
             setProvinceValue(null);
+            setDistrictValue(null);
+            setCityValue(null);
             setProvinceFocus(true);
           }}
           onBlur={() => setProvinceFocus(false)}
@@ -84,6 +86,7 @@ const LocationPicker = () => {
             value={districtValue}
             onFocus={() => {
               setDistrictValue(null);
+              setCityValue(null);
               setDistrictFocus(true);
             }}
             onBlur={() => setDistrictFocus(false)}

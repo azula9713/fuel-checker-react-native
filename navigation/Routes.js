@@ -73,7 +73,7 @@ const Routes = () => {
               headerTitle: `Results in ${
                 currentCity === null
                   ? Districts[currentProvince]?.districts?.find(
-                      (dis) => dis.districtId === currentDistrict
+                      (dis) => dis?.districtId === currentDistrict
                     ).name
                   : Districts[currentProvince]?.districts
                       ?.find((dis) => dis?.districtId === currentDistrict)

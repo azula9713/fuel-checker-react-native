@@ -231,7 +231,7 @@ const Details = () => {
                 </Text>
                 <Text
                   style={styles.updateText}
-                >{` ${DetailsLocaleEn.availableTypes.lastUpdated} at ${selectedStationData.lastupdateddate}`}</Text>
+                >{` ${DetailsLocaleEn.availableTypes.lastUpdated} ${selectedStationData.lastupdateddate}`}</Text>
                 {selectedStationData.dispatchSheduleList.map(
                   (dispatch, index) => (
                     <View style={styles.dispatchContainer} key={index}>
@@ -257,7 +257,7 @@ const Details = () => {
                       </View>
                       <View style={styles.metaDataContainer}>
                         <Text style={styles.dispatchTitle}>
-                          {DetailsLocaleEn.fuelDispatches.productType}:{" "}
+                          {DetailsLocaleEn.fuelDispatches.amount}:{" "}
                         </Text>
                         <Text style={styles.dispatchValue}>
                           {`${dispatch.amountDispatch} Litres`}
@@ -295,9 +295,6 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     paddingVertical: 10,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
   },
   categoryContainer: {
     marginBottom: 10,
