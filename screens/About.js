@@ -118,8 +118,10 @@ const About = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.linkButton, { backgroundColor: "#EA4335" }]}
-                onPress={async () => {
-                  await handleUrl(MyInfo.github);
+                onPress={() => {
+                  Linking.openURL(
+                    `mailto:${MyInfo.email}?subject=Fuel Finder&body=Hi,%0A%0A`
+                  );
                 }}
               >
                 <MaterialCommunityIcons name="mail" size={20} color="white" />
