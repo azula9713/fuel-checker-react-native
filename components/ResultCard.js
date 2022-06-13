@@ -62,14 +62,14 @@ const ResultCard = ({ navigation, fuelStation }) => {
                   Bowser arrival time (E.T.A):
                 </Text>
                 <Text style={styles.metaValue}>
-                  {fuelStation.eta.split(", ")[0]}
+                  {fuelStation?.eta?.split(", ")[0]}
                 </Text>
               </View>
               <View style={styles.metaContainer}>
                 <Text style={styles.metaTitle}>Estimated arriving stock:</Text>
 
                 <Text style={styles.metaValue}>
-                  {fuelStation.eta.split(", ")[1]}
+                  {fuelStation?.eta?.split(", ")[1]}
                 </Text>
               </View>
             </View>
