@@ -56,11 +56,22 @@ const ResultCard = ({ navigation, fuelStation }) => {
             </Text>
           </View>
           {fuelStation.fuelCapacity <= FUEL_OPENING_STOCK && (
-            <View style={styles.metaContainer}>
-              <Text style={styles.metaTitle}>
-                Estimated bowser arrival time:
-              </Text>
-              <Text style={styles.metaValue}>{fuelStation?.eta}</Text>
+            <View>
+              <View style={styles.metaContainer}>
+                <Text style={styles.metaTitle}>
+                  Bowser arrival time (E.T.A):
+                </Text>
+                <Text style={styles.metaValue}>
+                  {fuelStation.eta.split(", ")[0]}
+                </Text>
+              </View>
+              <View style={styles.metaContainer}>
+                <Text style={styles.metaTitle}>Estimated arriving stock:</Text>
+
+                <Text style={styles.metaValue}>
+                  {fuelStation.eta.split(", ")[1]}
+                </Text>
+              </View>
             </View>
           )}
         </View>
