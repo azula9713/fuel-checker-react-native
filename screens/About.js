@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Linking,
   ScrollView,
+  Appearance,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Constants from "expo-constants";
@@ -31,8 +32,10 @@ const About = () => {
 
   return (
     <SafeAreaView>
-      <ExpoStatus style="dark" />
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ExpoStatus
+        style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
+      />
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80 }}>
         <View style={styles.container}>
           <Image
             source={require("../assets/fuel.png")}
@@ -123,11 +126,12 @@ export default About;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#efefef",
+    backgroundColor:
+      Appearance.getColorScheme() === "dark" ? "#000" : "#efefef",
     alignItems: "center",
     justifyContent: "flex-start",
     flexGrow: 1,
-    minHeight: Dimensions.get("window").height - 60,
+    minHeight: Dimensions.get("window").height,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 20,
   },
 
@@ -135,6 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
   },
 
   versionText: {
@@ -153,11 +158,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 5,
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
   },
 
   warningText: {
-    color: "#f00",
+    //if appearance is dark make bright red
+    color: Appearance.getColorScheme() === "dark" ? "#EE4B2B" : "#000",
     fontSize: 12,
     textAlign: "justify",
   },
@@ -174,7 +181,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderColor: "#ec6500",
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
     marginTop: 20,
   },
 

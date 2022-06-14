@@ -5,6 +5,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  Appearance,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -39,7 +40,9 @@ const Details = () => {
 
   return (
     <SafeAreaView>
-      <StatusBar style="dark" />
+      <StatusBar
+        style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
+      />
       <View style={styles.container}>
         {stationLoading && (
           <View
@@ -63,12 +66,14 @@ const Details = () => {
         )}
         {selectedStationData && (
           <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
+            contentContainerStyle={{ flexGrow: 1, paddingBottom: 80 }}
             style={{
               flex: 1,
-              minHeight: Dimensions.get("window").height - 100,
+              minHeight: Dimensions.get("window").height,
               paddingHorizontal: 10,
               paddingBottom: 15,
+              backgroundColor:
+                Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
             }}
           >
             <View>
@@ -302,8 +307,9 @@ export default Details;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
     paddingVertical: 10,
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
+    flex: 1,
   },
   categoryContainer: {
     marginBottom: 10,
@@ -314,7 +320,8 @@ const styles = StyleSheet.create({
     borderColor: "#ec6500",
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor:
+      Appearance.getColorScheme() === "dark" ? "#F8EDE3" : "#fff",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

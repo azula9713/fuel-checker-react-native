@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 7,
     borderRadius: 10,
+    minWidth: Dimensions.get("window").width / 3 - 25,
   },
   textStyle: {
     textTransform: "uppercase",

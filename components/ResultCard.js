@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-  Dimensions,
+  Appearance,
 } from "react-native";
 import React from "react";
 import { selectedStationAtom } from "../atoms/resultsAtom";
@@ -39,7 +39,10 @@ const ResultCard = ({ navigation, fuelStation }) => {
           />
         </View>
         <View style={styles.dataWrapper}>
-          <Text style={styles.stationName}>{fuelStation.shedName}</Text>
+          <View style={styles.stationNameWrapper}>
+            <Text style={styles.shedNameText}>{fuelStation.shedName}</Text>
+          </View>
+
           <View style={styles.metaContainer}>
             <Text style={styles.metaTitle}>Last updated at:</Text>
             <Text style={styles.metaValue}>{fuelStation.lastupdatebyshed}</Text>
@@ -69,13 +72,13 @@ const ResultCard = ({ navigation, fuelStation }) => {
                   Bowser arrival time (E.T.A):
                 </Text>
                 <Text style={styles.metaValue}>
-                  {fuelStation?.eta?.split(", ")[0]}
+                  {fuelStation.eta ? fuelStation.eta.split(", ")[0] : "N/A"}
                 </Text>
               </View>
               <View style={styles.metaContainer}>
                 <Text style={styles.metaTitle}>Estimated arriving stock:</Text>
                 <Text style={styles.metaValue}>
-                  {fuelStation?.eta?.split(", ")[1]}
+                  {fuelStation.eta ? fuelStation.eta.split(", ")[1] : "N/A"}
                 </Text>
               </View>
             </View>
@@ -90,10 +93,11 @@ export default ResultCard;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginVertical: 10,
-    marginHorizontal: Dimensions.get("window").width < 400 ? 5 : 10,
+    marginVertical: 8,
+    paddingHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor:
+      Appearance.getColorScheme() === "dark" ? "#F8EDE3" : "#fff",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -102,14 +106,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    height: 100,
   },
 
   stationWrapper: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
     padding: 10,
+    height: "100%",
   },
   iconWrapper: {
     marginHorizontal: 5,
@@ -121,8 +127,18 @@ const styles = StyleSheet.create({
   dataWrapper: {
     width: "100%",
     paddingHorizontal: 5,
+    height: "100%",
+    justifyContent: "space-evenly",
   },
-  stationName: {
+  stationNameWrapper: {
+    width: "90%",
+    //if the text is longer the display it in two lines
+    flexWrap: "wrap",
+    flexDirection: "row",
+    marginRight: 10,
+  },
+
+  shedNameText: {
     textAlign: "left",
     fontSize: 12,
     fontWeight: "bold",

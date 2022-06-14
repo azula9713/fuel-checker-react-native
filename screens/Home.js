@@ -6,6 +6,7 @@ import {
   Text,
   ScrollView,
   Dimensions,
+  Appearance,
 } from "react-native";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useMutation } from "react-query";
@@ -17,13 +18,13 @@ import {
   provinceValueAtom,
 } from "../atoms/locationAtom";
 import { currentFuelStationAtom } from "../atoms/resultsAtom";
+import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
 import * as FuelAPI from "../services/FuelAPI";
+import getFuelAvailability from "../services/GetFuelAvailability";
 import HomeLocaleEn from "../lang/en/Home.json";
 
 import LocationPicker from "../components/LocationPicker";
 import WarningBanner from "../components/WarningBanner";
-import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
-import getFuelAvailability from "../services/GetFuelAvailability";
 
 const Home = ({ navigation }) => {
   const provinceValue = useRecoilValue(provinceValueAtom);
@@ -46,39 +47,45 @@ const Home = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <StatusBar style="dark" />
-      <ScrollView
-        style={styles.wrapper}
-        contentContainerStyle={{ flexGrow: 1 }}
-      >
-        <WarningBanner />
-        <View style={styles.container}>
-          <LocationPicker />
-
-          <Pressable
-            disabled={btnDisabled}
-            onPress={() => {
-              getFuelAvailability(
-                provinceValue,
-                districtValue,
-                cityValue,
-                fuelTypeValue,
-                findStations
-              );
-            }}
-            style={[
-              styles.buttonContainer,
-              {
-                backgroundColor: btnDisabled ? "#ccc" : "#ec6500",
-              },
-            ]}
-          >
-            <Text style={styles.buttonText}>
-              {stationsLoading
-                ? HomeLocaleEn.cta.loadignText
-                : HomeLocaleEn.cta.actionText}
-            </Text>
-          </Pressable>
+      <StatusBar
+        style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
+      />
+      <ScrollView style={styles.wrapper}>
+        <View
+          style={{
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            marginTop: 10,
+          }}
+        >
+          <WarningBanner />
+          <View style={styles.container}>
+            <LocationPicker />
+            <Pressable
+              disabled={btnDisabled}
+              onPress={() => {
+                getFuelAvailability(
+                  provinceValue,
+                  districtValue,
+                  cityValue,
+                  fuelTypeValue,
+                  findStations
+                );
+              }}
+              style={[
+                styles.buttonContainer,
+                {
+                  backgroundColor: btnDisabled ? "#ccc" : "#ec6500",
+                },
+              ]}
+            >
+              <Text style={styles.buttonText}>
+                {stationsLoading
+                  ? HomeLocaleEn.cta.loadignText
+                  : HomeLocaleEn.cta.actionText}
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -93,7 +100,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginVertical: 10,
     marginHorizontal: 5,
-    backgroundColor: "#fff",
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
@@ -105,23 +112,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   wrapper: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: "#fff",
-    flex: 1,
-    minHeight: Dimensions.get("window").height - 80,
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
     height: "100%",
   },
 
   buttonContainer: {
-    //if disabled, the button will be gray
     borderRadius: 10,
-    padding: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    marginTop: 20,
   },
   buttonText: {
     color: "#fff",
-    //if device screen is smaller than 500px, then font size is smaller
-    fontSize: Dimensions.get("window").width < 400 ? 12 : 18,
+    fontSize: Dimensions.get("window").width < 400 ? 14 : 18,
     textTransform: "uppercase",
     textAlign: "center",
     fontWeight: "bold",

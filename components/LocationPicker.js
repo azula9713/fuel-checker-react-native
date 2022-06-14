@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Appearance } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { useRecoilState } from "recoil";
@@ -41,11 +41,14 @@ const LocationPicker = () => {
         {HomeLocaleEn.locationPicker.title}
       </Text>
       <View style={styles.dropDownWrapper}>
-        <Text>{HomeLocaleEn.locationPicker.provincePicker}</Text>
+        <Text style={styles.pickerTitleText}>
+          {HomeLocaleEn.locationPicker.provincePicker}
+        </Text>
         <Dropdown
-          style={[styles.dropdown, provinceFocus && { borderColor: "blue" }]}
+          style={[styles.dropdown, provinceFocus && { borderColor: "#ec6500" }]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
+          containerStyle={styles.dropdownContainer}
           inputSearchStyle={styles.inputSearchStyle}
           data={Provinces}
           search
@@ -70,11 +73,17 @@ const LocationPicker = () => {
       </View>
       {provinceValue !== null && (
         <View style={styles.dropDownWrapper}>
-          <Text>{HomeLocaleEn.locationPicker.districtPicker}</Text>
+          <Text style={styles.pickerTitleText}>
+            {HomeLocaleEn.locationPicker.districtPicker}
+          </Text>
           <Dropdown
-            style={[styles.dropdown, districtFocus && { borderColor: "blue" }]}
+            style={[
+              styles.dropdown,
+              districtFocus && { borderColor: "#ec6500" },
+            ]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
+            containerStyle={styles.dropdownContainer}
             inputSearchStyle={styles.inputSearchStyle}
             data={Districts[provinceValue]?.districts}
             search
@@ -99,11 +108,14 @@ const LocationPicker = () => {
       )}
       {districtValue !== null && (
         <View style={styles.dropDownWrapper}>
-          <Text>{HomeLocaleEn.locationPicker.cityPicker}</Text>
+          <Text style={styles.pickerTitleText}>
+            {HomeLocaleEn.locationPicker.cityPicker}
+          </Text>
           <Dropdown
-            style={[styles.dropdown, cityFocus && { borderColor: "blue" }]}
+            style={[styles.dropdown, cityFocus && { borderColor: "#ec6500" }]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
+            containerStyle={styles.dropdownContainer}
             inputSearchStyle={styles.inputSearchStyle}
             data={cities}
             search
@@ -144,23 +156,23 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
   },
+  dropdownContainer: {
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
+  },
   icon: {
     marginRight: 5,
   },
-  label: {
-    position: "absolute",
-    backgroundColor: "white",
-    left: 22,
-    top: 8,
-    zIndex: 999,
-    paddingHorizontal: 8,
-    fontSize: 14,
+  pickerTitleText: {
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
   },
   placeholderStyle: {
     fontSize: 16,
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
   },
   selectedTextStyle: {
     fontSize: 16,
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
   },
   iconStyle: {
     width: 20,
@@ -169,5 +181,6 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
   },
 });

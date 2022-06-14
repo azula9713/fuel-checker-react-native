@@ -20,6 +20,7 @@ import {
   provinceValueAtom,
 } from "../atoms/locationAtom";
 import Districts from "../data/DistrictData";
+import { Appearance } from "react-native";
 
 const Routes = () => {
   const Stack = createStackNavigator();
@@ -38,31 +39,16 @@ const Routes = () => {
             options={({ navigation }) => ({
               headerTitleAlign: "center",
               headerTitle: "Fuel Availability",
-              headerRight: () => (
-                <OverflowMenu
-                  style={{ marginHorizontal: 10 }}
-                  OverflowIcon={() => (
-                    <MaterialCommunityIcons
-                      name="dots-vertical"
-                      size={24}
-                      color="black"
-                    />
-                  )}
-                >
-                  <HiddenItem
-                    style={{
-                      marginHorizontal: 10,
-                    }}
-                    title="About"
-                    onPress={() => navigation.navigate("About")}
-                  />
-                  <HiddenItem
-                    style={{ marginHorizontal: 10 }}
-                    title="Settings"
-                    onPress={() => navigation.navigate("Settings")}
-                  />
-                </OverflowMenu>
-              ),
+              headerTitleStyle: {
+                fontWeight: "bold",
+                color:
+                  Appearance.getColorScheme() === "dark" ? "white" : "black",
+              },
+              headerStyle: {
+                backgroundColor:
+                  Appearance.getColorScheme() === "dark" ? "#1a1a1a" : "#fff",
+              },
+              headerRight: () => <OverflowMenuHeader navigation={navigation} />,
             })}
           />
           <Stack.Screen
@@ -70,6 +56,15 @@ const Routes = () => {
             component={Results}
             options={({ navigation }) => ({
               headerTitleAlign: "center",
+              headerTitleStyle: {
+                fontWeight: "bold",
+                color:
+                  Appearance.getColorScheme() === "dark" ? "white" : "black",
+              },
+              headerStyle: {
+                backgroundColor:
+                  Appearance.getColorScheme() === "dark" ? "#1a1a1a" : "#fff",
+              },
               headerTitle: `Results in ${
                 currentCity === null
                   ? Districts[currentProvince]?.districts?.find(
@@ -89,6 +84,15 @@ const Routes = () => {
             options={({ navigation }) => ({
               headerTitleAlign: "center",
               headerTitle: "Details",
+              headerTitleStyle: {
+                fontWeight: "bold",
+                color:
+                  Appearance.getColorScheme() === "dark" ? "white" : "black",
+              },
+              headerStyle: {
+                backgroundColor:
+                  Appearance.getColorScheme() === "dark" ? "#1a1a1a" : "#fff",
+              },
               headerRight: () => <OverflowMenuHeader navigation={navigation} />,
             })}
           />
@@ -98,6 +102,15 @@ const Routes = () => {
             options={({ navigation }) => ({
               headerTitleAlign: "center",
               headerTitle: "About",
+              headerTitleStyle: {
+                fontWeight: "bold",
+                color:
+                  Appearance.getColorScheme() === "dark" ? "white" : "black",
+              },
+              headerStyle: {
+                backgroundColor:
+                  Appearance.getColorScheme() === "dark" ? "#1a1a1a" : "#fff",
+              },
               headerRight: () => <OverflowMenuHeader navigation={navigation} />,
             })}
           />
@@ -107,6 +120,15 @@ const Routes = () => {
             options={({ navigation }) => ({
               headerTitleAlign: "center",
               headerTitle: "Settings",
+              headerTitleStyle: {
+                fontWeight: "bold",
+                color:
+                  Appearance.getColorScheme() === "dark" ? "white" : "black",
+              },
+              headerStyle: {
+                backgroundColor:
+                  Appearance.getColorScheme() === "dark" ? "#1a1a1a" : "#fff",
+              },
               headerRight: () => <OverflowMenuHeader navigation={navigation} />,
             })}
           />
