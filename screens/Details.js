@@ -317,11 +317,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#ec6500",
+    borderColor: "#203F75",
     padding: 10,
     borderRadius: 10,
     backgroundColor:
-      Appearance.getColorScheme() === "dark" ? "#F8EDE3" : "#fff",
+      Appearance.getColorScheme() === "dark" ? "#EFF6FF" : "#fff",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -334,12 +334,12 @@ const styles = StyleSheet.create({
   updateText: {
     fontSize: 11,
     textAlign: "center",
-    color: "#ec6500",
+    color: "#203F75",
   },
   categoryTitle: {
     fontSize: Dimensions.get("window").width < 400 ? 16 : 20,
     textAlign: "center",
-    color: "#ec6500",
+    color: "#203F75",
     fontWeight: "bold",
   },
   metaDataContainer: {
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
   },
   dispatchContainer: {
     width: "100%",
-    backgroundColor: "#fdefe5",
+    backgroundColor: "#EFF6FF",
     color: "#fff",
     paddingVertical: 5,
     paddingHorizontal: 10,

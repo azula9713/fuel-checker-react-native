@@ -1,11 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {
-  HiddenItem,
-  OverflowMenu,
-  OverflowMenuProvider,
-} from "react-navigation-header-buttons";
+import { OverflowMenuProvider } from "react-navigation-header-buttons";
+import { Appearance } from "react-native";
+import { useRecoilValue } from "recoil";
 
 import Home from "../screens/Home";
 import Results from "../screens/Results";
@@ -13,14 +10,12 @@ import Details from "../screens/Details";
 import About from "../screens/About";
 import Settings from "../screens/Settings";
 import OverflowMenuHeader from "../components/OverflowMenuHeader";
-import { useRecoilValue } from "recoil";
 import {
   cityValueAtom,
   districtValueAtom,
   provinceValueAtom,
 } from "../atoms/locationAtom";
 import Districts from "../data/DistrictData";
-import { Appearance } from "react-native";
 
 const Routes = () => {
   const Stack = createStackNavigator();
@@ -40,7 +35,6 @@ const Routes = () => {
               headerTitleAlign: "center",
               headerTitle: "Fuel Availability",
               headerTitleStyle: {
-                fontWeight: "bold",
                 color:
                   Appearance.getColorScheme() === "dark" ? "white" : "black",
               },
@@ -57,7 +51,6 @@ const Routes = () => {
             options={({ navigation }) => ({
               headerTitleAlign: "center",
               headerTitleStyle: {
-                fontWeight: "bold",
                 color:
                   Appearance.getColorScheme() === "dark" ? "white" : "black",
               },
@@ -85,7 +78,6 @@ const Routes = () => {
               headerTitleAlign: "center",
               headerTitle: "Details",
               headerTitleStyle: {
-                fontWeight: "bold",
                 color:
                   Appearance.getColorScheme() === "dark" ? "white" : "black",
               },
@@ -103,7 +95,6 @@ const Routes = () => {
               headerTitleAlign: "center",
               headerTitle: "About",
               headerTitleStyle: {
-                fontWeight: "bold",
                 color:
                   Appearance.getColorScheme() === "dark" ? "white" : "black",
               },
@@ -121,7 +112,6 @@ const Routes = () => {
               headerTitleAlign: "center",
               headerTitle: "Settings",
               headerTitleStyle: {
-                fontWeight: "bold",
                 color:
                   Appearance.getColorScheme() === "dark" ? "white" : "black",
               },

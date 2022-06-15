@@ -20,14 +20,14 @@ const FuelTypeCard = ({ fuelType, isSelected }) => {
       style={[
         styles.fuelCardContainer,
         {
-          backgroundColor: isSelected ? "#ec6500" : "#fff",
+          backgroundColor: isSelected ? "#203F75" : "#fff",
         },
       ]}
     >
       <Text
         style={[
           {
-            color: isSelected ? "#fff" : "#ec6500",
+            color: isSelected ? "#fff" : "#203F75",
             fontWeight: isSelected ? "bold" : "normal",
             fontSize: isSelected
               ? Dimensions.get("window").width < 400

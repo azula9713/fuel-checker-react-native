@@ -17,7 +17,7 @@ const OverflowMenuHeader = ({ navigation }) => {
         <MaterialCommunityIcons
           name="dots-vertical"
           size={24}
-          color={Appearance.getColorScheme() === "dark" ? "#fff" : "#ec6500"}
+          color={Appearance.getColorScheme() === "dark" ? "#fff" : "#203F75"}
         />
       )}
     >

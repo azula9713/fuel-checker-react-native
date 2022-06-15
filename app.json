@@ -2,7 +2,7 @@
   "expo": {
     "name": "Fuel Finder",
     "slug": "fuel-finder",
-    "version": "0.9.7",
+    "version": "0.9.8",
     "orientation": "portrait",
     "icon": "./assets/fuel.png",
     "userInterfaceStyle": "automatic",
@@ -17,14 +17,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.tsukiyomidev.fuelfinder"
+      "bundleIdentifier": "com.azula9713.fuelfinder"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/fuel.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.tsukiyomidev.fuelfinder",
+      "package": "com.azula9713.fuelfinder",
       "versionCode": 1
     },
     "web": {

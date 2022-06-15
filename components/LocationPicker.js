@@ -36,6 +36,7 @@ const LocationPicker = () => {
         style={{
           textTransform: "uppercase",
           textAlign: "center",
+          color: Appearance.getColorScheme() === "dark" ? "white" : "#203F75",
         }}
       >
         {HomeLocaleEn.locationPicker.title}
@@ -45,7 +46,7 @@ const LocationPicker = () => {
           {HomeLocaleEn.locationPicker.provincePicker}
         </Text>
         <Dropdown
-          style={[styles.dropdown, provinceFocus && { borderColor: "#ec6500" }]}
+          style={[styles.dropdown, provinceFocus && { borderColor: "#203F75" }]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           containerStyle={styles.dropdownContainer}
@@ -79,7 +80,7 @@ const LocationPicker = () => {
           <Dropdown
             style={[
               styles.dropdown,
-              districtFocus && { borderColor: "#ec6500" },
+              districtFocus && { borderColor: "#203F75" },
             ]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
@@ -112,7 +113,7 @@ const LocationPicker = () => {
             {HomeLocaleEn.locationPicker.cityPicker}
           </Text>
           <Dropdown
-            style={[styles.dropdown, cityFocus && { borderColor: "#ec6500" }]}
+            style={[styles.dropdown, cityFocus && { borderColor: "#203F75" }]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             containerStyle={styles.dropdownContainer}
