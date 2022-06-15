@@ -1,6 +1,6 @@
-![Fuel Finder Logo](/assets/brand.png)
+![Fuel Finder Logo](/assets/Brand.png)
 
-# Fuel Fidner App
+# Fuel Finder App
 
 This project aims to be a strong foundation for easing the reachability to up to date details to the general consumer. This app is not the official app of Ceylon Petroleum Storage Terminals Ltd. This is built using their public API and has no affiliation with Ceylon Petroleum Storage Terminals Ltd [Fuel Finder](https://fuel.gov.lk) product.
 
