@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
     backgroundColor:
-      Appearance.getColorScheme() === "dark" ? "#F8EDE3" : "#fff",
+      Appearance.getColorScheme() === "dark" ? "#EFF6FF" : "#fff",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

@@ -18,7 +18,7 @@ const WarningBanner = () => {
           <Entypo
             name={isCollapsed ? "chevron-down" : "chevron-up"}
             size={24}
-            color={Appearance.getColorScheme() === "dark" ? "#fff" : "#ec6500"}
+            color="#fff"
             style={{
               marginLeft: 20,
             }}
@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:
-      Appearance.getColorScheme() === "dark" ? "#ec6500" : "#fdefe5",
+    backgroundColor: "#203F75",
     padding: 10,
     borderRadius: 10,
   },
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
   warningTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#ec6500",
+    color: "#fff",
     textTransform: "uppercase",
   },
   warningWrapper: {
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   },
   warningText: {
     fontSize: 12,
-    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+    color: "#fff",
     marginTop: 10,
     textAlign: "left",
   },

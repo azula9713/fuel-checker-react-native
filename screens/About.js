@@ -35,18 +35,17 @@ const About = () => {
       <ExpoStatus
         style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
       />
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}>
         <View style={styles.container}>
           <Image
-            source={require("../assets/fuel.png")}
+            source={require("../assets/Brand.png")}
             style={{
               resizeMode: "contain",
-              height: 140,
-              width: 140,
+              height: 100,
+              width: 300,
             }}
           />
           <View>
-            <Text style={styles.appTitle}>Fuel Finder</Text>
             <Text style={styles.versionText}>v{version}</Text>
           </View>
           <View style={styles.detailsWrapper}>
@@ -64,7 +63,9 @@ const About = () => {
             </View>
             <View style={styles.aboutMeContainer}>
               <Text style={styles.createdByText}>Created by AzuLa9713</Text>
-              <Text style={styles.websiteText}>Find me on</Text>
+              <Text style={[styles.websiteText, { color: "#EFF6FF" }]}>
+                Find me on
+              </Text>
               <View style={styles.linksContainer}>
                 <TouchableOpacity
                   style={[styles.linkButton, { backgroundColor: "#0B192E" }]}
@@ -113,6 +114,25 @@ const About = () => {
                   <Text style={styles.linkText}>Email</Text>
                 </TouchableOpacity>
               </View>
+              <Text style={[styles.websiteText, { color: "#EFF6FF" }]}>
+                for
+              </Text>
+              <View
+                style={{
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  marginVertical: -50,
+                }}
+              >
+                <Image
+                  source={require("../assets/watchdogteam.png")}
+                  style={{
+                    resizeMode: "contain",
+                    height: 140,
+                    width: 140,
+                  }}
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -136,7 +156,7 @@ const styles = StyleSheet.create({
   },
 
   appTitle: {
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
     color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
@@ -156,15 +176,15 @@ const styles = StyleSheet.create({
 
   createdByText: {
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "bold",
     marginBottom: 5,
-    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+    color: "#fff",
   },
 
   warningText: {
     //if appearance is dark make bright red
-    color: Appearance.getColorScheme() === "dark" ? "#EE4B2B" : "#000",
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
     fontSize: 12,
     textAlign: "justify",
   },
@@ -178,11 +198,12 @@ const styles = StyleSheet.create({
 
   aboutMeContainer: {
     borderWidth: 1.5,
-    padding: 20,
-    borderColor: "#ec6500",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderColor: "#203F75",
     borderRadius: 10,
-    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
-    marginTop: 20,
+    backgroundColor: "#203F75",
+    marginTop: 10,
   },
 
   linksContainer: {
@@ -196,7 +217,7 @@ const styles = StyleSheet.create({
   linkButton: {
     borderRadius: 10,
     paddingVertical: 5,
-    backgroundColor: "#ec6500",
+    backgroundColor: "#203F75",
     margin: 5,
     width: "40%",
     alignItems: "center",

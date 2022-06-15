@@ -73,7 +73,7 @@ const Results = ({ navigation }) => {
                 fontSize: 14,
                 fontWeight: "bold",
                 marginTop: 5,
-                color: "#ec6500",
+                color: "#203F75",
               }}
             >
               {ResultsLocaleEn.fuelType.pickerTitle}
@@ -201,10 +201,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F8EDE3",
+    backgroundColor: "#EFF6FF",
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: "#ec6500",
+    borderColor: "#203F75",
     marginVertical: 10,
   },
 

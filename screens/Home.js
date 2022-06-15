@@ -75,7 +75,7 @@ const Home = ({ navigation }) => {
               style={[
                 styles.buttonContainer,
                 {
-                  backgroundColor: btnDisabled ? "#ccc" : "#ec6500",
+                  backgroundColor: btnDisabled ? "#ccc" : "#203F75",
                 },
               ]}
             >
