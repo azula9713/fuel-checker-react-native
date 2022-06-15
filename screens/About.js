@@ -8,7 +8,6 @@ import {
   Platform,
   StatusBar,
   Image,
-  TouchableOpacity,
   Linking,
   ScrollView,
   Appearance,
@@ -17,7 +16,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Constants from "expo-constants";
 import { StatusBar as ExpoStatus } from "expo-status-bar";
 
+import Contributor from "../components/Contributor";
+
 import MyInfo from "../data/MyInfo";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import Contributors from "../data/Contributors";
 
 const About = () => {
   const version = Constants.manifest.version;
@@ -31,11 +34,19 @@ const About = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        backgroundColor:
+          Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
+        flex: 1,
+      }}
+    >
       <ExpoStatus
         style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
       />
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 20, flex: 1 }}
+      >
         <View style={styles.container}>
           <Image
             source={require("../assets/Brand.png")}
@@ -48,7 +59,86 @@ const About = () => {
           <View>
             <Text style={styles.versionText}>v{version}</Text>
           </View>
+
           <View style={styles.detailsWrapper}>
+            <View style={styles.iconsWrapper}>
+              <Pressable
+                style={styles.iconWrapper}
+                onPress={async () => {
+                  await handleUrl(website);
+                }}
+              >
+                <MaterialCommunityIcons
+                  name="web"
+                  size={24}
+                  color={
+                    Appearance.getColorScheme() === "dark" ? "#fff" : "#000"
+                  }
+                  style={{
+                    marginBottom: 5,
+                  }}
+                />
+                <Text
+                  style={{
+                    color:
+                      Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+                  }}
+                >
+                  Visit
+                </Text>
+              </Pressable>
+              <View style={styles.iconWrapper}>
+                <MaterialCommunityIcons
+                  name="alert-decagram-outline"
+                  size={24}
+                  color={
+                    Appearance.getColorScheme() === "dark" ? "#fff" : "#000"
+                  }
+                  style={{
+                    marginBottom: 5,
+                  }}
+                />
+                <Text
+                  style={{
+                    color:
+                      Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+                  }}
+                >
+                  Disclaimer
+                </Text>
+              </View>
+              <View style={styles.iconWrapper}>
+                <MaterialCommunityIcons
+                  name="chat-question"
+                  size={24}
+                  color={
+                    Appearance.getColorScheme() === "dark" ? "#fff" : "#000"
+                  }
+                  style={{
+                    marginBottom: 5,
+                  }}
+                />
+                <Text
+                  style={{
+                    color:
+                      Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+                  }}
+                >
+                  F.A.Q
+                </Text>
+              </View>
+            </View>
+            <View style={styles.contributorsWrapper}>
+              <Text style={styles.createdByText}>Contributors</Text>
+              <View>
+                {Contributors.map((contributor, index) => (
+                  <Contributor key={index} person={contributor} />
+                ))}
+              </View>
+            </View>
+          </View>
+
+          {/* <View style={styles.detailsWrapper}>
             <View>
               <Text style={styles.warningText}>
                 This app is not the official app of Ceylon Petroleum Storage
@@ -64,7 +154,31 @@ const About = () => {
             <View style={styles.aboutMeContainer}>
               <Text style={styles.createdByText}>Created by AzuLa9713</Text>
               <Text style={[styles.websiteText, { color: "#EFF6FF" }]}>
-                Find me on
+                for
+              </Text>
+              <View
+                style={{
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  marginVertical: -50,
+                }}
+              >
+                <Image
+                  source={require("../assets/watchdogteam.png")}
+                  style={{
+                    resizeMode: "contain",
+                    height: 140,
+                    width: 140,
+                  }}
+                />
+              </View>
+              <Text
+                style={[
+                  styles.websiteText,
+                  { color: "#EFF6FF", textAlign: "left", marginLeft: 20 },
+                ]}
+              >
+                Find me on :
               </Text>
               <View style={styles.linksContainer}>
                 <TouchableOpacity
@@ -114,27 +228,8 @@ const About = () => {
                   <Text style={styles.linkText}>Email</Text>
                 </TouchableOpacity>
               </View>
-              <Text style={[styles.websiteText, { color: "#EFF6FF" }]}>
-                for
-              </Text>
-              <View
-                style={{
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  marginVertical: -50,
-                }}
-              >
-                <Image
-                  source={require("../assets/watchdogteam.png")}
-                  style={{
-                    resizeMode: "contain",
-                    height: 140,
-                    width: 140,
-                  }}
-                />
-              </View>
             </View>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -145,12 +240,10 @@ export default About;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor:
       Appearance.getColorScheme() === "dark" ? "#000" : "#efefef",
     alignItems: "center",
     justifyContent: "flex-start",
-    flexGrow: 1,
     minHeight: Dimensions.get("window").height,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 20,
   },
@@ -171,15 +264,36 @@ const styles = StyleSheet.create({
   detailsWrapper: {
     paddingHorizontal: 25,
     paddingVertical: 10,
-    marginTop: 20,
+    marginVertical: 20,
+  },
+
+  iconsWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  iconWrapper: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 20,
+  },
+
+  contributorsWrapper: {
+    borderWidth: 2,
+    borderColor: "#203F75",
+    borderRadius: 10,
+    marginVertical: 20,
+    padding: 10,
   },
 
   createdByText: {
-    textAlign: "center",
-    fontSize: 12,
+    textAlign: "left",
+    fontSize: 14,
     fontWeight: "bold",
     marginBottom: 5,
-    color: "#fff",
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
   },
 
   warningText: {
