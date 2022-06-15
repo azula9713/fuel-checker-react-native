@@ -215,7 +215,7 @@ const Details = () => {
                 </View>
                 <View style={styles.metaDataContainer}>
                   <View>
-                    <Text>Kerosine </Text>
+                    <Text>Kerosene </Text>
                   </View>
                   <Text style={styles.metaDataTitle}>
                     {DetailsLocaleEn.availableTypes.openingStock}:{" "}
