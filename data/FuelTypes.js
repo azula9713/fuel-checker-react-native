@@ -17,7 +17,7 @@ const FuelTypes = [
   },
   {
     id: "k",
-    name: "Kerosine",
+    name: "Kerosene",
   },
 ];
 

@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Fuel Checker",
-    "slug": "fuel-checker",
-    "version": "1.0.0",
+    "name": "Fuel Finder",
+    "slug": "fuel-finder",
+    "version": "0.9.8",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/fuel.png",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/fuel-finder.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,14 +16,15 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.azula9713.fuelfinder"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/fuel.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.tsukiyomidev.fuelchecker",
+      "package": "com.azula9713.fuelfinder",
       "versionCode": 1
     },
     "web": {

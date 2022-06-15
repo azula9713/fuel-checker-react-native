@@ -1,30 +1,47 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, Pressable, Appearance } from "react-native";
+import React, { useState } from "react";
+import Collapsible from "react-native-collapsible";
+import { Entypo } from "@expo/vector-icons";
+
+import HomeLocaleEn from "../lang/en/Home.json";
 
 const WarningBanner = () => {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.warningTitle}>Heads Up!</Text>
-      {/* display a list */}
-      <View style={styles.warningWrapper}>
-        <Text style={styles.warningText}>
-          1. I am not responsible for any details displayed on the system.
+      <View style={styles.headerContainer}>
+        <Text style={styles.warningTitle}>
+          {HomeLocaleEn.banner.bannerTitle}
         </Text>
-        <Text style={styles.warningText}>
-          2. Information on the fuel availability will be uploaded to the system
-          by Ceylon Petroleum Storage Terminals Ltd (CPSTL) by 9.00 a.m daily.
-          Further, the time is shown in 24-hour clock format.
-        </Text>
-        <Text style={styles.warningText}>
-          3. The search results are given only for filling stations with pumping
-          capacity or where a fuel bowser is dispatched.
-        </Text>
-        <Text style={styles.warningText}>
-          4. This app is not the official app of Ceylon Petroleum Storage
-          Terminals Ltd. This is built using their public API and has no
-          affiliation with Ceylon Petroleum Storage Terminals Ltd.
-        </Text>
+        <Pressable onPress={() => setIsCollapsed(!isCollapsed)}>
+          <Entypo
+            name={isCollapsed ? "chevron-down" : "chevron-up"}
+            size={24}
+            color="#fff"
+            style={{
+              marginLeft: 20,
+            }}
+          />
+        </Pressable>
       </View>
+
+      <Collapsible collapsed={isCollapsed}>
+        <View style={styles.warningWrapper}>
+          <Text style={styles.warningText}>
+            {HomeLocaleEn.banner.bannerText1}
+          </Text>
+          <Text style={styles.warningText}>
+            {HomeLocaleEn.banner.bannerText2}
+          </Text>
+          <Text style={styles.warningText}>
+            {HomeLocaleEn.banner.bannerText3}
+          </Text>
+          <Text style={styles.warningText}>
+            {HomeLocaleEn.banner.bannerText4}
+          </Text>
+        </View>
+      </Collapsible>
     </View>
   );
 };
@@ -35,14 +52,20 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fdefe5",
+    backgroundColor: "#203F75",
     padding: 10,
     borderRadius: 10,
+  },
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
   warningTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#ec6500",
+    color: "#fff",
     textTransform: "uppercase",
   },
   warningWrapper: {
@@ -55,7 +78,7 @@ const styles = StyleSheet.create({
   },
   warningText: {
     fontSize: 12,
-    color: "#000",
+    color: "#fff",
     marginTop: 10,
     textAlign: "left",
   },

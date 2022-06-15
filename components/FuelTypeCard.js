@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 import React from "react";
 import { useSetRecoilState } from "recoil";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
@@ -20,16 +20,22 @@ const FuelTypeCard = ({ fuelType, isSelected }) => {
       style={[
         styles.fuelCardContainer,
         {
-          backgroundColor: isSelected ? "#ec6500" : "#fff",
+          backgroundColor: isSelected ? "#203F75" : "#fff",
         },
       ]}
     >
       <Text
         style={[
           {
-            color: isSelected ? "#fff" : "#000",
+            color: isSelected ? "#fff" : "#203F75",
             fontWeight: isSelected ? "bold" : "normal",
-            fontSize: isSelected ? 18 : 16,
+            fontSize: isSelected
+              ? Dimensions.get("window").width < 400
+                ? 14
+                : 18
+              : Dimensions.get("window").width < 400
+              ? 12
+              : 16,
           },
           styles.textStyle,
         ]}
@@ -48,6 +54,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 7,
     borderRadius: 10,
+    minWidth: Dimensions.get("window").width / 3 - 25,
   },
   textStyle: {
     textTransform: "uppercase",

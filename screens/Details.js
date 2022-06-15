@@ -5,12 +5,15 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  Appearance,
 } from "react-native";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import LottieView from "lottie-react-native";
 import { useRecoilValue } from "recoil";
+import { StatusBar } from "expo-status-bar";
 
+import DetailsLocaleEn from "../lang/en/Details.json";
 import { selectedStationAtom } from "../atoms/resultsAtom";
 import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
 import * as FuelAPI from "../services/FuelAPI";
@@ -18,7 +21,6 @@ import FuelTypes from "../data/FuelTypes";
 
 const Details = () => {
   const FUEL_OPENING_STOCK = 750;
-  const animation = useRef(null);
 
   const selectedStation = useRecoilValue(selectedStationAtom);
   const selectedFuel = useRecoilValue(selectedFuelTypeAtom);
@@ -38,35 +40,50 @@ const Details = () => {
 
   return (
     <SafeAreaView>
+      <StatusBar
+        style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
+      />
       <View style={styles.container}>
         {stationLoading && (
-          <LottieView
-            autoPlay
-            loop
-            ref={animation}
+          <View
             style={{
-              width: 200,
-              height: 200,
+              flexDirection: "column",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            source={require("../assets/loading-pump.json")}
-          />
+          >
+            <LottieView
+              autoPlay
+              loop
+              style={{
+                width: 200,
+                height: 200,
+              }}
+              source={require("../assets/loading-pump.json")}
+            />
+          </View>
         )}
         {selectedStationData && (
           <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
+            contentContainerStyle={{ flexGrow: 1, paddingBottom: 80 }}
             style={{
               flex: 1,
-              minHeight: Dimensions.get("window").height - 100,
+              minHeight: Dimensions.get("window").height,
               paddingHorizontal: 10,
               paddingBottom: 15,
+              backgroundColor:
+                Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
             }}
           >
             <View>
               <View style={styles.categoryContainer}>
-                <Text style={styles.categoryTitle}>Basic Info</Text>
+                <Text style={styles.categoryTitle}>
+                  {DetailsLocaleEn.basicInfo.title}
+                </Text>
                 <View style={styles.metaDataContainer}>
                   <Text style={styles.metaDataTitle}>
-                    Filling Station Code:{" "}
+                    {DetailsLocaleEn.basicInfo.stationCode}:{" "}
                   </Text>
                   <Text style={styles.metaDataValue}>
                     {selectedStationData.shedCode}
@@ -74,29 +91,35 @@ const Details = () => {
                 </View>
                 <View style={styles.metaDataContainer}>
                   <Text style={styles.metaDataTitle}>
-                    Filling Station Name:{" "}
+                    {DetailsLocaleEn.basicInfo.stationName}:{" "}
                   </Text>
                   <Text style={styles.metaDataValue}>
                     {selectedStationData.shedName}
                   </Text>
                 </View>
                 <View style={styles.metaDataContainer}>
-                  <Text style={styles.metaDataTitle}>Address: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.basicInfo.address}:{" "}
+                  </Text>
                   <Text style={styles.metaDataValue}>
                     {selectedStationData.address}
                   </Text>
                 </View>
               </View>
               <View style={styles.categoryContainer}>
-                <Text style={styles.categoryTitle}>Available Fuel Types</Text>
+                <Text style={styles.categoryTitle}>
+                  {DetailsLocaleEn.availableTypes.title}
+                </Text>
                 <Text
                   style={styles.updateText}
-                >{`Last updated at ${selectedStationData.lastupdateddate}`}</Text>
+                >{`${DetailsLocaleEn.availableTypes.lastUpdated} ${selectedStationData.lastupdateddate}`}</Text>
                 <View style={styles.metaDataContainer}>
                   <View>
                     <Text>Petrol 92 </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -119,7 +142,9 @@ const Details = () => {
                   <View>
                     <Text>Petrol 95 </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -142,7 +167,9 @@ const Details = () => {
                   <View>
                     <Text>Diesel </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -165,7 +192,9 @@ const Details = () => {
                   <View>
                     <Text>Super Diesel </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -186,9 +215,11 @@ const Details = () => {
                 </View>
                 <View style={styles.metaDataContainer}>
                   <View>
-                    <Text>Kerosine </Text>
+                    <Text>Kerosene </Text>
                   </View>
-                  <Text style={styles.metaDataTitle}>Opening Stock: </Text>
+                  <Text style={styles.metaDataTitle}>
+                    {DetailsLocaleEn.availableTypes.openingStock}:{" "}
+                  </Text>
                   <Text
                     style={[
                       styles.metaDataValue,
@@ -209,21 +240,27 @@ const Details = () => {
                 </View>
               </View>
               <View style={styles.categoryContainer}>
-                <Text style={styles.categoryTitle}>Fuel Dispatches</Text>
+                <Text style={styles.categoryTitle}>
+                  {DetailsLocaleEn.fuelDispatches.title}
+                </Text>
                 <Text
                   style={styles.updateText}
-                >{`Last updated at ${selectedStationData.lastupdateddate}`}</Text>
+                >{` ${DetailsLocaleEn.availableTypes.lastUpdated} ${selectedStationData.lastupdateddate}`}</Text>
                 {selectedStationData.dispatchSheduleList.map(
                   (dispatch, index) => (
                     <View style={styles.dispatchContainer} key={index}>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>Plant Name: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.plantName}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>
                           {dispatch.plantName}
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>Product Type: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.productType}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>
                           {
                             FuelTypes.find(
@@ -233,21 +270,25 @@ const Details = () => {
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>Amount: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.amount}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>
                           {`${dispatch.amountDispatch} Litres`}
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
                         <Text style={styles.dispatchTitle}>
-                          Plant Exit Time:{" "}
+                          {DetailsLocaleEn.fuelDispatches.plantExitTime}:{" "}
                         </Text>
                         <Text style={styles.dispatchValue}>
                           {dispatch.dispatchTime}
                         </Text>
                       </View>
                       <View style={styles.metaDataContainer}>
-                        <Text style={styles.dispatchTitle}>E.T.A: </Text>
+                        <Text style={styles.dispatchTitle}>
+                          {DetailsLocaleEn.fuelDispatches.eta}:{" "}
+                        </Text>
                         <Text style={styles.dispatchValue}>{dispatch.eta}</Text>
                       </View>
                     </View>
@@ -266,8 +307,9 @@ export default Details;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
-    padding: 10,
+    paddingVertical: 10,
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
+    flex: 1,
   },
   categoryContainer: {
     marginBottom: 10,
@@ -275,10 +317,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#ec6500",
+    borderColor: "#203F75",
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor:
+      Appearance.getColorScheme() === "dark" ? "#EFF6FF" : "#fff",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -291,12 +334,12 @@ const styles = StyleSheet.create({
   updateText: {
     fontSize: 11,
     textAlign: "center",
-    color: "#ec6500",
+    color: "#203F75",
   },
   categoryTitle: {
-    fontSize: 20,
+    fontSize: Dimensions.get("window").width < 400 ? 16 : 20,
     textAlign: "center",
-    color: "#ec6500",
+    color: "#203F75",
     fontWeight: "bold",
   },
   metaDataContainer: {
@@ -309,16 +352,16 @@ const styles = StyleSheet.create({
   },
   metaDataTitle: {
     color: "#000",
-    fontSize: 15,
+    fontSize: Dimensions.get("window").width < 400 ? 13 : 15,
   },
   metaDataValue: {
     color: "black",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: Dimensions.get("window").width < 400 ? 13 : 15,
   },
   dispatchContainer: {
     width: "100%",
-    backgroundColor: "#fdefe5",
+    backgroundColor: "#EFF6FF",
     color: "#fff",
     paddingVertical: 5,
     paddingHorizontal: 10,

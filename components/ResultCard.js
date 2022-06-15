@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Appearance,
+} from "react-native";
 import React from "react";
 import { selectedStationAtom } from "../atoms/resultsAtom";
 import { useSetRecoilState } from "recoil";
@@ -32,7 +39,10 @@ const ResultCard = ({ navigation, fuelStation }) => {
           />
         </View>
         <View style={styles.dataWrapper}>
-          <Text style={styles.stationName}>{fuelStation.shedName}</Text>
+          <View style={styles.stationNameWrapper}>
+            <Text style={styles.shedNameText}>{fuelStation.shedName}</Text>
+          </View>
+
           <View style={styles.metaContainer}>
             <Text style={styles.metaTitle}>Last updated at:</Text>
             <Text style={styles.metaValue}>{fuelStation.lastupdatebyshed}</Text>
@@ -56,11 +66,21 @@ const ResultCard = ({ navigation, fuelStation }) => {
             </Text>
           </View>
           {fuelStation.fuelCapacity <= FUEL_OPENING_STOCK && (
-            <View style={styles.metaContainer}>
-              <Text style={styles.metaTitle}>
-                Estimated bowser arrival time:
-              </Text>
-              <Text style={styles.metaValue}>{fuelStation?.eta}</Text>
+            <View>
+              <View style={styles.metaContainer}>
+                <Text style={styles.metaTitle}>
+                  Bowser arrival time (E.T.A):
+                </Text>
+                <Text style={styles.metaValue}>
+                  {fuelStation.eta ? fuelStation.eta.split(", ")[0] : "N/A"}
+                </Text>
+              </View>
+              <View style={styles.metaContainer}>
+                <Text style={styles.metaTitle}>Estimated arriving stock:</Text>
+                <Text style={styles.metaValue}>
+                  {fuelStation.eta ? fuelStation.eta.split(", ")[1] : "N/A"}
+                </Text>
+              </View>
             </View>
           )}
         </View>
@@ -73,9 +93,11 @@ export default ResultCard;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    margin: 10,
+    marginVertical: 8,
+    paddingHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor:
+      Appearance.getColorScheme() === "dark" ? "#EFF6FF" : "#fff",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -84,14 +106,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    height: 100,
   },
 
   stationWrapper: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
     padding: 10,
+    height: "100%",
   },
   iconWrapper: {
     marginHorizontal: 5,
@@ -103,8 +127,18 @@ const styles = StyleSheet.create({
   dataWrapper: {
     width: "100%",
     paddingHorizontal: 5,
+    height: "100%",
+    justifyContent: "space-evenly",
   },
-  stationName: {
+  stationNameWrapper: {
+    width: "90%",
+    //if the text is longer the display it in two lines
+    flexWrap: "wrap",
+    flexDirection: "row",
+    marginRight: 10,
+  },
+
+  shedNameText: {
     textAlign: "left",
     fontSize: 12,
     fontWeight: "bold",
@@ -112,6 +146,7 @@ const styles = StyleSheet.create({
   },
   metaContainer: {
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   metaTitle: {
     textAlign: "left",

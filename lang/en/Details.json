@@ -1,0 +1,21 @@
+{
+  "basicInfo": {
+    "title": "Basic Info",
+    "stationCode": "Filling Station Code",
+    "stationName": "Filling Station Name",
+    "address": "Address"
+  },
+  "availableTypes": {
+    "title": "Available Fuel Types",
+    "lastUpdated": "Last Updated at",
+    "openingStock": "Opening Stock"
+  },
+  "fuelDispatches": {
+    "title": "Fuel Dispatches",
+    "plantName": "Plant Name",
+    "productType": "Product Type",
+    "plantExitTime": "Plant Exit Time",
+    "amount": "Amount",
+    "eta": "ETA"
+  }
+}

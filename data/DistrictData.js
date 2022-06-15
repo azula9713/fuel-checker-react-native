@@ -2,7 +2,7 @@ const Districts = {
   1: {
     districts: [
       {
-        districtId: "1",
+        districtId: 1,
         name: "Colombo",
         cities: [
           {
@@ -316,7 +316,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "2",
+        districtId: 2,
         name: "Gampaha",
         cities: [
           {
@@ -722,7 +722,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "3",
+        districtId: 3,
         name: "Kaluthara",
         cities: [
           {
@@ -892,7 +892,7 @@ const Districts = {
   2: {
     districts: [
       {
-        districtId: "23",
+        districtId: 23,
         name: "Hambantota",
         cities: [
           {
@@ -1014,7 +1014,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "5",
+        districtId: 5,
         name: "Matara",
         cities: [
           {
@@ -1148,7 +1148,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "4",
+        districtId: 4,
         name: "Galle",
         cities: [
           {
@@ -1338,7 +1338,7 @@ const Districts = {
   3: {
     districts: [
       {
-        districtId: "6",
+        districtId: 6,
         name: "Kurunegala",
         cities: [
           {
@@ -1632,7 +1632,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "8",
+        districtId: 8,
         name: "Puttalam",
         cities: [
           {
@@ -1826,7 +1826,7 @@ const Districts = {
   4: {
     districts: [
       {
-        districtId: "7",
+        districtId: 7,
         name: "Kandy",
         cities: [
           {
@@ -2004,7 +2004,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "8",
+        districtId: 8,
         name: "Matale",
         cities: [
           {
@@ -2070,7 +2070,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "11",
+        districtId: 11,
         name: "Nuwara Eliya",
         cities: [
           {
@@ -2152,7 +2152,7 @@ const Districts = {
   5: {
     districts: [
       {
-        districtId: "22",
+        districtId: 22,
         name: "Kegalle",
         cities: [
           {
@@ -2242,7 +2242,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "9",
+        districtId: 9,
         name: "Ratnapura",
         cities: [
           {
@@ -2348,7 +2348,7 @@ const Districts = {
   6: {
     districts: [
       {
-        districtId: "17",
+        districtId: 17,
         name: "Jaffna",
         cities: [
           {
@@ -2506,7 +2506,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "18",
+        districtId: 18,
         name: "Mannar",
         cities: [
           {
@@ -2548,7 +2548,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "19",
+        districtId: 19,
         name: "Mulalativu",
         cities: [
           {
@@ -2590,7 +2590,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "20",
+        districtId: 20,
         name: "Vavuniya",
         cities: [
           {
@@ -2616,7 +2616,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "21",
+        districtId: 21,
         name: "Killinochchi",
         cities: [
           {
@@ -2654,7 +2654,7 @@ const Districts = {
   7: {
     districts: [
       {
-        districtId: "15",
+        districtId: 15,
         name: "Anuradhapura",
         cities: [
           {
@@ -2776,7 +2776,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "16",
+        districtId: 16,
         name: "Polonnaruwa",
         cities: [
           {
@@ -2866,7 +2866,7 @@ const Districts = {
   8: {
     districts: [
       {
-        districtId: "12",
+        districtId: 12,
         name: "Batticaloa",
         cities: [
           {
@@ -2968,7 +2968,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "13",
+        districtId: 13,
         name: "Ampara",
         cities: [
           {
@@ -3074,7 +3074,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "14",
+        districtId: 14,
         name: "Trincomalee",
         cities: [
           {
@@ -3140,7 +3140,7 @@ const Districts = {
   9: {
     districts: [
       {
-        districtId: "24",
+        districtId: 24,
         name: "Badulla",
         cities: [
           {
@@ -3250,7 +3250,7 @@ const Districts = {
         ],
       },
       {
-        districtId: "25",
+        districtId: 25,
         name: "Moneragala",
         cities: [
           {

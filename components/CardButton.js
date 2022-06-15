@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Appearance, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const CardButton = ({ navigation, text, icon, fuelStation }) => {
@@ -32,11 +32,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 10,
-    backgroundColor: "#ec6500",
+    backgroundColor: "#203F75",
   },
 
   buttonText: {
-    color: "#fff",
+    color: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
     marginRight: 5,
   },
 });

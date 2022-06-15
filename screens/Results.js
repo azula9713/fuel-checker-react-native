@@ -1,27 +1,23 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  SafeAreaView,
-  Dimensions,
-} from "react-native";
-import React, { useEffect, useRef } from "react";
+import { View, Text, StyleSheet, SafeAreaView, Appearance } from "react-native";
+import BigList from "react-native-big-list";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import LottieView from "lottie-react-native";
 import { useMutation } from "react-query";
+import { StatusBar } from "expo-status-bar";
 
 import FuelTypeCard from "../components/FuelTypeCard";
 import ResultCard from "../components/ResultCard";
 
+import ResultsLocaleEn from "../lang/en/Results.json";
 import FuelTypes from "../data/FuelTypes";
 import * as FuelAPI from "../services/FuelAPI";
+import getFuelAvailability from "../services/GetFuelAvailability";
+import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
 import {
   currentFuelStationAtom,
   isFuelChangeTriggerAtom,
 } from "../atoms/resultsAtom";
-import { selectedFuelTypeAtom } from "../atoms/fuelTypeAtom";
-import getFuelAvailability from "../services/GetFuelAvailability";
 import {
   cityValueAtom,
   districtValueAtom,
@@ -29,8 +25,6 @@ import {
 } from "../atoms/locationAtom";
 
 const Results = ({ navigation }) => {
-  const animation = useRef(null);
-
   const [currentStations, setCurrentStations] = useRecoilState(
     currentFuelStationAtom
   );
@@ -66,14 +60,12 @@ const Results = ({ navigation }) => {
     }
   }, [selectedFuelType]);
 
-  useEffect(() => {
-    // You can control the ref programmatically, rather than using autoPlay
-    animation.current?.play();
-  }, []);
-
-  if (currentStations.length > 0) {
+  if (currentStations && currentStations.length > 0) {
     return (
       <SafeAreaView>
+        <StatusBar
+          style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
+        />
         <View style={styles.container}>
           <View style={styles.fuelTypesContainer}>
             <Text
@@ -81,9 +73,10 @@ const Results = ({ navigation }) => {
                 fontSize: 14,
                 fontWeight: "bold",
                 marginTop: 5,
+                color: "#203F75",
               }}
             >
-              Select Fuel Type
+              {ResultsLocaleEn.fuelType.pickerTitle}
             </Text>
             <View style={styles.fuelTypesWrapper}>
               {FuelTypes.map((fuelType) => (
@@ -103,11 +96,10 @@ const Results = ({ navigation }) => {
                 { alignItems: "center", justifyContent: "flex-start" },
               ]}
             >
-              <Text>Loading...</Text>
+              <Text>{ResultsLocaleEn.results.loading}</Text>
               <LottieView
                 autoPlay
                 loop
-                ref={animation}
                 style={{
                   width: 200,
                   height: 200,
@@ -116,30 +108,33 @@ const Results = ({ navigation }) => {
               />
             </View>
           ) : (
-            <View>
+            <View
+              style={{
+                flex: 1,
+              }}
+            >
               <View>
-                <Text>
-                  Available stations as per now: {currentStations?.length}
+                <Text
+                  style={{
+                    color:
+                      Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+                    marginBottom: 10,
+                    padding: 10,
+                  }}
+                >
+                  {ResultsLocaleEn.results.availability}{" "}
+                  {currentStations?.length}
                 </Text>
               </View>
-              <ScrollView
-                style={styles.resultsContainer}
-                contentContainerStyle={{
-                  flexGrow: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "100%",
-                  paddingHorizontal: 15,
-                }}
-              >
-                {currentStations.map((station) => (
-                  <ResultCard
-                    key={station.shedId}
-                    fuelStation={station}
-                    navigation={navigation}
-                  />
-                ))}
-              </ScrollView>
+              <View style={styles.resultsContainer}>
+                <BigList
+                  data={currentStations}
+                  renderItem={({ item }) => (
+                    <ResultCard fuelStation={item} navigation={navigation} />
+                  )}
+                  itemHeight={110}
+                />
+              </View>
             </View>
           )}
         </View>
@@ -176,11 +171,10 @@ const Results = ({ navigation }) => {
             { alignItems: "center", justifyContent: "center" },
           ]}
         >
-          <Text>No fuel stations found...</Text>
+          <Text>{ResultsLocaleEn.results.notAvailable}</Text>
           <LottieView
             autoPlay
             loop
-            ref={animation}
             style={{
               width: 350,
               height: 350,
@@ -199,20 +193,18 @@ export default Results;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    marginVertical: 5,
-    marginHorizontal: 5,
+    padding: 10,
     height: "100%",
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
   },
   fuelTypesContainer: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F8EDE3",
+    backgroundColor: "#EFF6FF",
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: "#203F75",
     marginVertical: 10,
   },
 
@@ -225,9 +217,8 @@ const styles = StyleSheet.create({
   },
 
   resultsContainer: {
-    minHeight: Dimensions.get("window").height - 300,
-    paddingHorizontal: 10,
-    marginVertical: 10,
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
+    height: "100%",
     flex: 1,
   },
 });
