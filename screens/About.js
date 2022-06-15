@@ -38,15 +38,14 @@ const About = () => {
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}>
         <View style={styles.container}>
           <Image
-            source={require("../assets/fuel.png")}
+            source={require("../assets/Brand.png")}
             style={{
               resizeMode: "contain",
               height: 100,
-              width: 100,
+              width: 300,
             }}
           />
           <View>
-            <Text style={styles.appTitle}>Fuel Finder</Text>
             <Text style={styles.versionText}>v{version}</Text>
           </View>
           <View style={styles.detailsWrapper}>
