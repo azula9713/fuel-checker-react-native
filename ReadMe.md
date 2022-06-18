@@ -30,4 +30,4 @@ This project aims to be a strong foundation for easing the reachability to up to
 
 # License
 
-Fuel Finder is licensed under Apache 2.0. We grant you a non-exclusive, royalty free license to use Fuel Finer logos, solely in connection with other implementations of Fuel Finder.
+Fuel Finder is licensed under Apache 2.0. We grant you a non-exclusive, royalty free license to use Fuel Finder logos, solely in connection with other implementations of Fuel Finder.
