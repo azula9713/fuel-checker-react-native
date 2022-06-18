@@ -1,16 +1,59 @@
-import { View, Text, SafeAreaView, Appearance, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Appearance,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
-import LottieView from "lottie-react-native";
 import { StatusBar } from "expo-status-bar";
+import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
+  const iconColor =
+    Appearance.getColorScheme() === "dark" ? "white" : "#203F75";
+
+  const settingsOnPress = (to) => {
+    navigation.navigate(to);
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <StatusBar
         style={Appearance.getColorScheme() === "dark" ? "light" : "dark"}
       />
       <View style={styles.container}>
-        <View style={styles.lottieWrapper}>
+        <View style={styles.settingsSection}>
+          <TouchableOpacity style={styles.settingSectionWrapper}>
+            <Entypo
+              name="sound-mix"
+              size={28}
+              color={iconColor}
+              style={styles.iconStyle}
+            />
+            <Text style={styles.settingsText}>General</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.settingSectionWrapper}>
+            <Entypo name="home" size={28} color={iconColor} />
+            <Text style={styles.settingsText}>Home Data</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.settingSectionWrapper}
+            onPress={() => {
+              settingsOnPress("About");
+            }}
+          >
+            <MaterialCommunityIcons
+              name="information-outline"
+              size={28}
+              color={iconColor}
+            />
+            <Text style={styles.settingsText}>About</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* <View style={styles.lottieWrapper}>
           <LottieView
             autoPlay
             loop
@@ -23,7 +66,7 @@ const Settings = () => {
         </View>
         <View style={{ flex: 1 }}>
           <Text style={styles.settingsText}>Settings coming soon!</Text>
-        </View>
+        </View> */}
       </View>
     </SafeAreaView>
   );
@@ -33,23 +76,37 @@ export default Settings;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     height: "100%",
-    backgroundColor:
-      Appearance.getColorScheme() === "dark" ? "#000" : "#efefef",
+    backgroundColor: Appearance.getColorScheme() === "dark" ? "#000" : "#fff",
   },
 
   lottieWrapper: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
   },
 
+  iconStyle: {},
+
+  settingsSection: {
+    margin: 20,
+    borderRadius: 15,
+    padding: 10,
+  },
+
+  settingSectionWrapper: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginBottom: 10,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#ccc",
+  },
+
   settingsText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: Appearance.getColorScheme() === "dark" ? "#fff" : "#000",
+    color: Appearance.getColorScheme() === "dark" ? "#fff" : "black",
+    marginLeft: 20,
   },
 });
