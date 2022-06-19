@@ -26,7 +26,7 @@ import HomeLocaleEn from "../lang/en/Home.json";
 import LocationPicker from "../components/LocationPicker";
 import WarningBanner from "../components/WarningBanner";
 
-const Home = ({ navigation }) => {
+const CeypetcoLocation = ({ navigation }) => {
   const provinceValue = useRecoilValue(provinceValueAtom);
   const districtValue = useRecoilValue(districtValueAtom);
   const cityValue = useRecoilValue(cityValueAtom);
@@ -92,7 +92,7 @@ const Home = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default CeypetcoLocation;
 
 const styles = StyleSheet.create({
   container: {
